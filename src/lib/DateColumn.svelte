@@ -17,7 +17,4 @@
     div {
         font-size: 13px;
     }
-
-    <
-    /
-    style >
+</style>
