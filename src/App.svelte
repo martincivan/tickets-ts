@@ -3,7 +3,7 @@
     // import data from "./data.json";
     import {writable} from "svelte/store";
     import {Loader} from "./lib/loader.js";
-    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns.js";
+    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
     import {TagsLoader} from "./lib/tags.js";
