@@ -39,4 +39,20 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    @media screen and (max-width: 768px) {
+        tr {
+            display: block;
+        }
+
+        td {
+            display: none;
+        }
+
+        td:nth-child(-n+4) {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    }
 </style>

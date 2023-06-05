@@ -1,6 +1,5 @@
 <script>
     import Table from "./lib/Table.svelte";
-    // import data from "./data.json";
     import {writable} from "svelte/store";
     import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
     import UserColumn from "./lib/columns/UserColumn.svelte";
@@ -12,6 +11,8 @@
 
 
     let columns = writable([
+        new Column("User", UserColumn, false, true),
+        new Column("Ticket", ComplexColumn, false, true),
         new DateColumnDefinition("Date changed", GetTicketsGridListSortFieldEnum.Datechanged, true),
         new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
         new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
@@ -21,9 +22,7 @@
         new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
         new SimpleColumnDefinition("Ticket ID", "code"),
         new SimpleColumnDefinition("Source", "channelType"),
-        new SimpleColumnDefinition("Status", "status"),
-        new Column("User", UserColumn, false, true),
-        new Column("Ticket", ComplexColumn, false, true),
+        new SimpleColumnDefinition("Status", "status")
 
     ]);
     let tagsLoader = new TagsLoader();
@@ -95,6 +94,7 @@
 <main>
     <h1>Table</h1>
     Loading: {$loading}
+    Loaded: {$data.length}
     Next: {$cursor}
     <Table {data} {columns} {loadMore}/>
 </main>
