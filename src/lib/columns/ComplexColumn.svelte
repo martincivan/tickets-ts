@@ -33,9 +33,6 @@
         color: #606060;
         background-color: #d6d6d6;
         border-radius: 25px;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
+        padding: 3px 10px;
     }
 </style>

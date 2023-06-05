@@ -11,6 +11,15 @@
 
 <span>
     {#each tags as tag}
-        <span style="color: #{t[tag].color}; background: #{t[tag].backgroundcolor}">{t[tag].name}</span>
+        <span class="tag" style="color: #{t[tag].color}; background: #{t[tag].backgroundcolor}">{t[tag].name}</span>
     {/each}
 </span>
+
+<style>
+    .tag {
+        font-size: 12px;
+        border-radius: 25px;
+        padding: 3px 10px;
+    }
+</style>
+
