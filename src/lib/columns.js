@@ -1,5 +1,5 @@
-import DateColumn from "./DateColumn.svelte";
-import SimpleColumn from "./SimpleColumn.svelte";
+import DateColumn from "./columns/DateColumn.svelte";
+import SimpleColumn from "./columns/SimpleColumn.svelte";
 
 class Column {
     renderer;
