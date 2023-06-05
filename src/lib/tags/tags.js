@@ -1,5 +1,5 @@
-import {Configuration} from "./dist/esm/runtime.js";
-import {GridApi, TagsApi} from "./dist/esm/index.js";
+import {Configuration} from "../dist/esm/runtime.js";
+import {GridApi} from "../dist/esm/index.js";
 import {writable} from "svelte/store";
 
 class TagsLoader {

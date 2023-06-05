@@ -6,7 +6,7 @@
     import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
-    import {TagsLoader} from "./lib/tags.js";
+    import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
 
 

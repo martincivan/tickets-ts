@@ -1,5 +1,5 @@
 <script>
-    import Tags from "../Tags.svelte";
+    import Tags from "../tags/Tags.svelte";
 
     export let row;
 </script>
