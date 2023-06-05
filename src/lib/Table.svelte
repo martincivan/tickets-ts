@@ -30,7 +30,7 @@
 
 <div class="container">
     <table bind:this={table}>
-        <THead columns={columns}/>
+        <THead {columns}/>
         <TBody columns={$columns} {data}/>
         <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
     </table>

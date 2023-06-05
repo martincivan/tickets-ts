@@ -2,11 +2,9 @@
     import {getContext} from "svelte";
 
     let tagsMap = getContext("tagsMap")
-    console.log(tagsMap);
     export let tags;
     // <span style="background: #{$tagsMap[tag].color};">{$tagsMap[tag].name}</span>
     let t = $tagsMap;
-    console.log(t);
 </script>
 
 <span>

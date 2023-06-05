@@ -1,4 +1,6 @@
 <script>
+    import {getContext} from "svelte";
+
     export let columns;
 
     let hovering = false;
@@ -22,7 +24,6 @@
     const dragstart = (event, i) => {
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.dropEffect = 'move';
-        const start = i;
         event.dataTransfer.setData('text/plain', start);
     }
 
@@ -135,6 +136,23 @@
         },
     ]
 
+    const sort = getContext("sort")
+    const direction = getContext("direction")
+
+    const toggleSort = (column) => {
+        if (column.sortable) {
+            if ($sort === column.sortable) {
+                if ($direction) {
+                    direction.set(false)
+                } else {
+                    direction.set(true)
+                }
+            } else {
+                sort.set(column.sortable)
+                direction.set(true)
+            }
+        }
+    }
 
 </script>
 
@@ -147,6 +165,10 @@
             ondragover="return false"
             on:dragenter={() => hovering = index}
             class:is-active={hovering === index}
+            class:sortable={column.sortable}
+            class:sorted={$sort === column.sortable}
+            class:reversed={$sort === column.sortable && !$direction}
+            on:click={() => toggleSort(column)}
     >
         <div class="content">
             {column.name}
@@ -186,4 +208,16 @@
         white-space: nowrap;
         text-align: left;
     }
+    .sortable {
+        text-decoration: underline;
+    }
+
+    .sorted {
+        color: blue;
+    }
+
+    .reversed {
+        color: red;
+    }
+
 </style>

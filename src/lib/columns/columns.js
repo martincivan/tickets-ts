@@ -6,7 +6,7 @@ class Column {
     name;
     sortable;
     mandatory;
-    constructor(name, renderer, sortable = false, mandatory = false) {
+    constructor(name, renderer, sortable = null, mandatory = false) {
         this.name = name;
         this.sortable = sortable;
         this.mandatory = mandatory;
@@ -18,7 +18,7 @@ class DateColumnDefinition extends Column {
     field;
     relative;
     constructor(name, field, relative = false) {
-        super(name, DateColumn, true, false);
+        super(name, DateColumn, field, false);
         this.field = field;
         this.relative = relative;
     }
@@ -27,7 +27,7 @@ class DateColumnDefinition extends Column {
 class SimpleColumnDefinition extends Column {
     field;
     constructor(name, field) {
-        super(name, SimpleColumn, false, false);
+        super(name, SimpleColumn, null, false);
         this.field = field;
     }
 }

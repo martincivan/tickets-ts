@@ -18,7 +18,6 @@ class TagsLoader {
         let newTags = await this.api.getTagsGridList();
         newTags = newTags.reduce((acc,curr)=> (acc[curr.tagid]=curr,acc),{});
         this.tags.set(newTags);
-        console.log(newTags)
     }
 
 }
