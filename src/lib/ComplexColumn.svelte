@@ -25,5 +25,17 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         padding-right: 5px;
+        font-size: 13px;
+    }
+
+    .department {
+        font-size: 12px;
+        color: #606060;
+        background-color: #d6d6d6;
+        border-radius: 25px;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
     }
 </style>

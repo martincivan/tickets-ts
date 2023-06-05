@@ -148,7 +148,9 @@
             on:dragenter={() => hovering = index}
             class:is-active={hovering === index}
     >
-        {column.name}
+        <div class="content">
+            {column.name}
+        </div>
     </th>
 {/each}
 </thead>
@@ -167,9 +169,21 @@
         position: sticky;
         top: 0;
         background: white;
+        color: #606060;
+        font-weight: 1;
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
     }
+
     .is-active {
         background-color: #3273dc;
         color: #fff;
+    }
+
+    .content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
     }
 </style>

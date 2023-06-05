@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
     import THead from "./THead.svelte";
     import TBody from "./TBody.svelte";
 
@@ -28,18 +28,27 @@
 
 </script>
 
-
-<table bind:this={table}>
-    <THead columns={columns}/>
-    <TBody {data} columns={$columns}/>
-    <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
-</table>
+<div class="container">
+    <table bind:this={table}>
+        <THead columns={columns}/>
+        <TBody columns={$columns} {data}/>
+        <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
+    </table>
+</div>
 
 <style>
     table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 4px 5px;
+        border: none;
+        table-layout: fixed;
+    }
+
+    .container {
+        width: 100%;
+        height: 500px;
         overflow-y: scroll;
         overflow-x: hidden;
-        height: 500px;
-        display: block;
     }
 </style>

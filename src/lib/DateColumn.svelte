@@ -12,3 +12,12 @@
         <span class="text-muted">-</span>
     {/if}
 </div>
+
+<style>
+    div {
+        font-size: 13px;
+    }
+
+    <
+    /
+    style >

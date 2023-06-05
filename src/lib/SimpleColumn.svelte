@@ -6,3 +6,12 @@
 <div>
     {row[column.field]}
 </div>
+
+<style>
+    div {
+        font-size: 13px;
+    }
+
+    <
+    /
+    style >
