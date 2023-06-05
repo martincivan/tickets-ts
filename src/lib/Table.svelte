@@ -9,7 +9,7 @@
     export let loadMore;
 
     let loadRow;
-    let table;
+    let container
 
     onMount(() => {
         const observer = new IntersectionObserver(entries => {
@@ -17,7 +17,7 @@
                 loadMore();
             }
         }, {
-            root: table,
+            root: container,
             threshold: 0.5
         });
 
@@ -28,8 +28,8 @@
 
 </script>
 
-<div class="container">
-    <table bind:this={table}>
+<div class="container" bind:this={container}>
+    <table>
         <THead {columns}/>
         <TBody columns={$columns} {data}/>
         <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
