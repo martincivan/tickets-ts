@@ -3,6 +3,7 @@
     export let column;
 
 </script>
+
 <div>
     {row[column.field]}
 </div>
@@ -11,7 +12,4 @@
     div {
         font-size: 13px;
     }
-
-    <
-    /
-    style >
+</style>
