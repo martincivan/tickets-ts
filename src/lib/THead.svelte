@@ -113,5 +113,12 @@
             display: none;
         }
     }
+    [draggable=true] {
+        cursor: grab;
+    }
+
+    .sortable {
+        cursor: pointer;
+    }
 
 </style>

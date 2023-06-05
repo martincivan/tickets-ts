@@ -38,7 +38,7 @@
 
 </script>
 <button on:click={openDialog}>Edit</button>
-<dialog bind:this={dialog} open>
+<dialog bind:this={dialog}>
     <h2>Manage grid</h2>
     <div class="checkboxes">
     {#each $columns as column, index (column)}
@@ -104,5 +104,9 @@
         width: fit-content;
         margin-left: auto;
         padding: 1rem;
+    }
+
+    [draggable=true] {
+        cursor: grab;
     }
 </style>
