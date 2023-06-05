@@ -6,11 +6,13 @@ class Column {
     name;
     sortable;
     mandatory;
-    constructor(name, renderer, sortable = null, mandatory = false) {
+    visible;
+    constructor(name, renderer, sortable = null, mandatory = false, visible = true) {
         this.name = name;
         this.sortable = sortable;
         this.mandatory = mandatory;
         this.renderer = renderer;
+        this.visible = visible || mandatory;
     }
 }
 

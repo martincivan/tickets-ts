@@ -8,6 +8,7 @@
     import {setContext} from "svelte";
     import {Configuration} from "./lib/dist/esm/runtime.js";
     import {GetAgentsGridListSortDirEnum, GetTicketsGridListSortFieldEnum, GridApi} from "./lib/dist/esm/index.js";
+    import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
 
 
     let columns = writable([
@@ -89,6 +90,12 @@
     })
     setContext("direction", direction)
     setContext("sort", sort)
+
+    let columnEditor;
+
+    let contextMenu = (e) => {
+        columnEditor.openDialog();
+    }
 </script>
 
 <main>
@@ -96,7 +103,8 @@
     Loading: {$loading}
     Loaded: {$data.length}
     Next: {$cursor}
-    <Table {data} {columns} {loadMore}/>
+    <ColumnEditor {columns} bind:this={columnEditor}/>
+    <Table {data} {columns} {loadMore} {contextMenu} />
 </main>
 
 <style>

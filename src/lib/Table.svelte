@@ -5,7 +5,7 @@
 
     export let data;
     export let columns;
-
+    export let contextMenu;
     export let loadMore;
 
     let loadRow;
@@ -30,7 +30,7 @@
 
 <div class="container" bind:this={container}>
     <table>
-        <THead {columns}/>
+        <THead {columns} contextMenu={contextMenu} />
         <TBody columns={$columns} {data}/>
         <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
     </table>

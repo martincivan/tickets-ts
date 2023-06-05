@@ -9,11 +9,13 @@
 {#each $data as row}
     <tr>
         {#each columns as column}
-            <td>
-                <div class="content">
-                    <svelte:component this={column.renderer} {column} {row}></svelte:component>
-                </div>
-            </td>
+            {#if column.visible}
+                <td>
+                    <div class="content">
+                        <svelte:component this={column.renderer} {column} {row}></svelte:component>
+                    </div>
+                </td>
+            {/if}
         {/each}
     </tr>
 {/each}
