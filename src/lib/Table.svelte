@@ -39,7 +39,6 @@
 <style>
     table {
         width: 100%;
-        border-collapse: collapse;
         border-spacing: 4px 5px;
         border: none;
         table-layout: fixed;
