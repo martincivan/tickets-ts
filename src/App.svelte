@@ -6,9 +6,13 @@
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
     import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
-    import {Configuration} from "./lib/dist/esm/runtime.js";
-    import {GetAgentsGridListSortDirEnum, GetTicketsGridListSortFieldEnum, GridApi} from "./lib/dist/esm/index.js";
     import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
+    import {
+        Configuration,
+        GetAgentsGridListSortDirEnum,
+        GetTicketsGridListSortFieldEnum,
+        GridApi
+    } from "@qualityunit/liveagent-api";
 
 
     let columns = writable([
@@ -70,7 +74,7 @@
             loaded = false
         }
 
-        const response = await api.getTicketsGridListRaw(createOptions());
+        const response = await api.getTicketsGridDatasetRaw(createOptions());
         const value = await response.value();
         if (expired === true) {
             $data = []

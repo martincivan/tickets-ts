@@ -1,6 +1,5 @@
-import {Configuration} from "../dist/esm/runtime.js";
-import {GridApi} from "../dist/esm/index.js";
 import {writable} from "svelte/store";
+import {Configuration, GridApi} from "@qualityunit/liveagent-api";
 
 class TagsLoader {
     constructor() {

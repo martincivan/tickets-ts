@@ -1,6 +1,5 @@
-import {GridApi} from "./dist/esm/index.js";
-import {Configuration} from "./dist/esm/runtime.js";
 import {writable} from "svelte/store";
+import {Configuration, GridApi} from "@qualityunit/liveagent-api";
 
 class Loader {
     constructor() {
@@ -19,7 +18,7 @@ class Loader {
     }
 
     async load(cursor = "") {
-        const data = await this.api.getTicketsGridListRaw({...this._opts, cursor});
+        const data = await this.api.getTicketsGridDatasetRaw({...this._opts, cursor});
         return await data.value();
     }
 }
