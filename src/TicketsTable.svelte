@@ -108,6 +108,7 @@
 
 <main>
     <h1>Table</h1>
+    <slot></slot>
     Loading: {$loading}
     Loaded: {$data.length}
     <button on:click={() => loadMore(true)}>Reload</button>
