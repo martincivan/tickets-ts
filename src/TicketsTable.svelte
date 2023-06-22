@@ -14,7 +14,7 @@
         GridApi
     } from "@qualityunit/liveagent-api";
 
-    export let apikey = "0zbl6x6dh5bhgz8iu5vhxaxfx8w5ceyb";
+    export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
 
     let columns = writable([
@@ -103,6 +103,8 @@
         columnEditor.openDialog();
     }
 </script>
+
+<svelte:options tag="tickets-table" />
 
 <main>
     <h1>Table</h1>

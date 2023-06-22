@@ -1,8 +1,1 @@
-import './app.css'
-import App from './TicketsTable.svelte'
-
-const app = new App({
-  target: document.getElementById('app'),
-})
-
-export default app
+export * from './TicketsTable.svelte'
