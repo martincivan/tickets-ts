@@ -14,6 +14,8 @@
         GridApi
     } from "@qualityunit/liveagent-api";
 
+    export let apikey = "0zbl6x6dh5bhgz8iu5vhxaxfx8w5ceyb";
+    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
 
     let columns = writable([
         new Column("User", UserColumn, false, true),
@@ -30,14 +32,14 @@
         new SimpleColumnDefinition("Status", "status")
 
     ]);
-    let tagsLoader = new TagsLoader();
+    let tagsLoader = new TagsLoader(apikey);
     tagsLoader.load();
     setContext("tagsMap", tagsLoader.tags);
 
 
     const config = new Configuration(
         {
-            apiKey: "x1s93tw5wv87gtlfjz779ffeioea8wgi",
+            apiKey: apikey,
             basePath: "https://hosted.la.localhost/LiveAgent/server/api/v3",
         }
     );
@@ -56,7 +58,7 @@
             "perPage": 20,
             "sortDir": $direction ? GetAgentsGridListSortDirEnum.Asc : GetAgentsGridListSortDirEnum.Desc,
             // "filters": "[[\"rstatus\",\"IN\",\"A\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]",
-            "filters": "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]",
+            filters,
             "sortField": $sort,
             "cursor": $cursor ? $cursor : ""
         }

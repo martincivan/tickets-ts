@@ -2,10 +2,10 @@ import {writable} from "svelte/store";
 import {Configuration, GridApi} from "@qualityunit/liveagent-api";
 
 class TagsLoader {
-    constructor() {
+    constructor(apiKey) {
         const config = new Configuration(
             {
-                apiKey: "",
+                apiKey,
                 basePath: "https://hosted.la.localhost/LiveAgent/server/api/v3",
             }
         );
