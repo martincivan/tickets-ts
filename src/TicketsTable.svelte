@@ -68,7 +68,7 @@
     let loadMore = async (expired = false) => {
         if ($loading) return // already loading
 
-        if (!$cursor && loaded) return // no more data
+        if (!$cursor && loaded && !expired) return // no more data
         $loading = true
 
         if (expired === true) {
@@ -110,7 +110,7 @@
     <h1>Table</h1>
     Loading: {$loading}
     Loaded: {$data.length}
-    Next: {$cursor}
+    <button on:click={() => loadMore(true)}>Reload</button>
     <ColumnEditor {columns} bind:this={columnEditor}/>
     <Table {data} {columns} {loadMore} {contextMenu} />
 </main>
