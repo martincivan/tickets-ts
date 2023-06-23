@@ -30,10 +30,13 @@
     const api = new GridApi(config);
 
     const data = writable([])
+    setContext("data", data)
     const sort = writable(GetTicketsGridListSortFieldEnum.Rorder)
     const direction = writable(true)
     const loading = writable(false)
+    setContext("loading", loading)
     const cursor = writable(null)
+    setContext("cursor", cursor)
     let loaded = false
 
 

@@ -2,6 +2,7 @@
     import {onMount} from 'svelte';
     import THead from "./THead.svelte";
     import TBody from "./TBody.svelte";
+    import LoadMore from "./LoadMore.svelte";
 
     export let data;
     export let columns;
@@ -32,7 +33,9 @@
     <table>
         <THead {columns} contextMenu={contextMenu} />
         <TBody columns={$columns} {data}/>
-        <div bind:this={loadRow} on:click={loadMore}>Loading...</div>
+        <div bind:this={loadRow} on:click={loadMore}>
+            <LoadMore />
+        </div>
     </table>
 </div>
 
