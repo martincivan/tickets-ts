@@ -8,6 +8,7 @@
     export let columns;
     export let contextMenu;
     export let loadMore;
+    export let middleclickhandler;
 
     let loadRow;
     let container
@@ -32,7 +33,7 @@
 <div class="container" bind:this={container}>
     <table>
         <THead {columns} contextMenu={contextMenu} />
-        <TBody columns={$columns} {data}/>
+        <TBody columns={$columns} {data} {middleclickhandler}/>
         <div bind:this={loadRow} on:click={loadMore}>
             <LoadMore />
         </div>

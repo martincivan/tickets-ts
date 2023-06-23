@@ -2,12 +2,22 @@
 
     export let columns;
     export let data;
+    export let middleclickhandler;
 
 </script>
 
 <tbody>
 {#each $data as row}
-    <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)}>
+    <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+        if (event.button == 1 && middleclickhandler) {
+            console.log("posielam");
+            middleclickhandler(row.conversationid);
+            event.preventDefault();
+            event.stopPropagation();
+            console.log("poslane");
+
+        }
+    }}>
         {#each columns as column}
             {#if column.visible}
                 <td>

@@ -14,6 +14,7 @@
 
     export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
+    export let middleclickhandler;
 
 
     let tagsLoader = new TagsLoader(apikey);
@@ -96,13 +97,12 @@
 </script>
 
 <main>
-    <h1>Tickets</h1>
     <slot></slot>
     Loading: {$loading}
     Loaded: {$data.length}
     <button on:click={() => loadMore(true)}>Reload</button>
     <ColumnEditor {columns} bind:this={columnEditor}/>
-    <Table {data} {columns} {loadMore} {contextMenu} />
+    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler}/>
 </main>
 
 <style>
