@@ -7,7 +7,7 @@
     let name = row["firstname"] + " " + row["lastname"];
     let url = row["avatarUrl"];
     if (!url) {
-        url = "https://www.gravatar.com/avatar/" + md5(row["emails"][0]) + "?s=200&d=404";
+        url = "https://www.gravatar.com/avatar/" + md5(row["emails"][0] ?? "") + "?s=200&d=404";
     }
 
 </script>

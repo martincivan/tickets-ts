@@ -7,7 +7,7 @@
 
 <tbody>
 {#each $data as row}
-    <tr>
+    <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)}>
         {#each columns as column}
             {#if column.visible}
                 <td>
@@ -24,7 +24,7 @@
 <style>
     tr {
         border-radius: 12px;
-        box-shadow: 0px 0px 5px 2px rgb(0 0 0 / 0.2);
+        box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
     }
 
     tr:hover {

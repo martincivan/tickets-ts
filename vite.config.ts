@@ -5,12 +5,12 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 export default defineConfig({
   plugins: [
     svelte({
-      exclude: ['./src/TicketsTable.svelte'],
+      exclude: ['./src/TicketsTableWrapper.svelte'],
       emitCss: false,
 
     }),
     svelte({
-      include: ['./src/TicketsTable.svelte'],
+      include: ['./src/TicketsTableWrapper.svelte'],
       emitCss: false,
       compilerOptions: {
         customElement: true,

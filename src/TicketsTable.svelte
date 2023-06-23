@@ -1,9 +1,7 @@
 <script>
     import Table from "./lib/Table.svelte";
     import {writable} from "svelte/store";
-    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
-    import UserColumn from "./lib/columns/UserColumn.svelte";
-    import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
+    import {columns} from "./lib/columns/columns.js";
     import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
     import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
@@ -17,21 +15,7 @@
     export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
 
-    let columns = writable([
-        new Column("User", UserColumn, false, true),
-        new Column("Ticket", ComplexColumn, false, true),
-        new DateColumnDefinition("Date changed", GetTicketsGridListSortFieldEnum.Datechanged, true),
-        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
-        new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
-        new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
-        new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
-        new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
-        new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
-        new SimpleColumnDefinition("Ticket ID", "code"),
-        new SimpleColumnDefinition("Source", "channelType"),
-        new SimpleColumnDefinition("Status", "status")
 
-    ]);
     let tagsLoader = new TagsLoader(apikey);
     tagsLoader.load();
     setContext("tagsMap", tagsLoader.tags);
@@ -66,6 +50,8 @@
 
 
     let loadMore = async (expired = false) => {
+        //console.log("apikey")
+        //console.log(apikey)
         if ($loading) return // already loading
 
         if (!$cursor && loaded && !expired) return // no more data
@@ -104,10 +90,8 @@
     }
 </script>
 
-<svelte:options tag="tickets-table" />
-
 <main>
-    <h1>Table</h1>
+    <h1>Tickets</h1>
     <slot></slot>
     Loading: {$loading}
     Loaded: {$data.length}

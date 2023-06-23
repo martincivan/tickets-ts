@@ -1,1 +1,1 @@
-export * from './TicketsTable.svelte'
+export * from './TicketsTableWrapper.svelte'
