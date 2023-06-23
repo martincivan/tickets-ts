@@ -91,6 +91,8 @@
     let contextMenu = (e) => {
         columnEditor.openDialog();
     }
+
+    $: filters && loadMore(true)
 </script>
 
 <main>
