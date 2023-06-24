@@ -7,17 +7,18 @@
 </script>
 
 <tbody>
-{#each $data as row}
+{#each $data as row, i}
     <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button == 1 && middleclickhandler) {
-            console.log("posielam");
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
-            console.log("poslane");
 
         }
     }}>
+        <td>
+            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}>
+        </td>
         {#each columns as column}
             {#if column.visible}
                 <td>

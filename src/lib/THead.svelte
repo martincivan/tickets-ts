@@ -4,7 +4,19 @@
     export let columns;
     export let contextMenu;
 
+    export let selection;
+    export let data;
+    $: allSelected = $data.length === $selection.length
+
+
     let hovering = false;
+
+    function toggleAll() {
+        $data = $data.map(row => {
+            row.__selected = !allSelected
+            return row
+        })
+    }
 
     const drop = (event, target) => {
         event.dataTransfer.dropEffect = 'move';
@@ -50,6 +62,9 @@
 </script>
 
 <thead>
+<th class="headCheckbox">
+    <input checked={allSelected} on:click={toggleAll} type="checkbox">
+</th>
 {#each $columns as column, index (column)}
     {#if column.visible}
         <th
@@ -82,6 +97,10 @@
         font-weight: 1;
         font-size: 14px;
         font-family: 'Roboto', sans-serif;
+    }
+
+    .headCheckbox {
+        width: 20px;
     }
 
     .is-active {

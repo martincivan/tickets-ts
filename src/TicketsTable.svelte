@@ -16,6 +16,11 @@
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
     export let middleclickhandler;
 
+    export let selectionHandler;
+
+    let selection = writable({})
+
+    $: selectionHandler($selection);
 
     let tagsLoader = new TagsLoader(apikey);
     tagsLoader.load();
@@ -54,8 +59,6 @@
 
 
     let loadMore = async (expired = false) => {
-        //console.log("apikey")
-        //console.log(apikey)
         if ($loading) return // already loading
 
         if (!$cursor && loaded && !expired) return // no more data
@@ -76,6 +79,7 @@
 
         $loading = false
         loaded = true
+
     }
 
     direction.subscribe(async () => {
@@ -93,6 +97,10 @@
         columnEditor.openDialog();
     }
 
+    data.subscribe(d => {
+        selection.set(d.filter((e) => (e.__selected ?? false)).map((e) => e.conversationid))
+    });
+
     $: filters && loadMore(true)
 </script>
 
@@ -102,7 +110,7 @@
     Loaded: {$data.length}
     <button on:click={() => loadMore(true)}>Reload</button>
     <ColumnEditor {columns} bind:this={columnEditor}/>
-    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler}/>
+    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selection}/>
 </main>
 
 <style>
