@@ -12,6 +12,7 @@
         GridApi
     } from "@qualityunit/liveagent-api";
     import Counter from "./lib/Counter.svelte";
+    import {t} from 'svelte-intl-precompile'
 
     export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
@@ -112,7 +113,7 @@
     <slot></slot>
     Loading: {$loading}
     <Counter {cursor} {data} filter={filters}/>
-    <button on:click={() => loadMore(true)}>Reload</button>
+    <button on:click={() => loadMore(true)}>{$t("Reload")}</button>
     <ColumnEditor {columns} bind:this={columnEditor}/>
     <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selectedAll}/>
 </main>
