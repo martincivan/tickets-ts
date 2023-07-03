@@ -17,7 +17,8 @@
         }
     }}>
         <td>
-            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}>
+            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
+                   on:click|stopPropagation={() => {}}>
         </td>
         {#each columns as column}
             {#if column.visible}

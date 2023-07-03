@@ -6,12 +6,14 @@
     export let middleclickhandler;
     export let selectionhandler;
     export let selectionMap = {};
+    export let selectedAll = false;
 
-    function handleSelection(selection) {
+    function handleSelection(selection, sAll) {
         console.log("selection", selection)
         selectionMap = selection;
+        selectedAll = sAll;
         if (selectionhandler) {
-            selectionhandler(selection);
+            selectionhandler(selection, sAll);
         }
     }
 

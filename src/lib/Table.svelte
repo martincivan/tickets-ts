@@ -9,7 +9,7 @@
     export let contextMenu;
     export let loadMore;
     export let middleclickhandler;
-    export let selection;
+    export let selectedAll;
 
     let loadRow;
     let container
@@ -33,8 +33,8 @@
 
 <div class="container" bind:this={container}>
     <table>
-        <THead {columns} contextMenu={contextMenu} {data} {selection}/>
-        <TBody columns={$columns} {data} {middleclickhandler}/>
+        <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
+        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}/>
         <div bind:this={loadRow} on:click={loadMore}>
             <LoadMore/>
         </div>

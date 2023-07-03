@@ -11,6 +11,7 @@
         GetTicketsGridListSortFieldEnum,
         GridApi
     } from "@qualityunit/liveagent-api";
+    import Counter from "./lib/Counter.svelte";
 
     export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
@@ -19,8 +20,9 @@
     export let selectionHandler;
 
     let selection = writable({})
+    let selectedAll = writable(false)
 
-    $: selectionHandler($selection);
+    $: selectionHandler($selection, $selectedAll);
 
     let tagsLoader = new TagsLoader(apikey);
     tagsLoader.load();
@@ -34,6 +36,8 @@
         }
     );
     const api = new GridApi(config);
+
+    setContext("api", api);
 
     const data = writable([])
     setContext("data", data)
@@ -107,10 +111,10 @@
 <main>
     <slot></slot>
     Loading: {$loading}
-    Loaded: {$data.length}
+    <Counter {cursor} {data} filter={filters}/>
     <button on:click={() => loadMore(true)}>Reload</button>
     <ColumnEditor {columns} bind:this={columnEditor}/>
-    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selection}/>
+    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selectedAll}/>
 </main>
 
 <style>

@@ -4,16 +4,15 @@
     export let columns;
     export let contextMenu;
 
-    export let selection;
+    export let selectedAll;
     export let data;
-    $: allSelected = $data.length === $selection.length
 
 
     let hovering = false;
 
     function toggleAll() {
         $data = $data.map(row => {
-            row.__selected = !allSelected
+            row.__selected = !$selectedAll
             return row
         })
     }
@@ -63,7 +62,7 @@
 
 <thead>
 <th class="headCheckbox">
-    <input checked={allSelected} on:click={toggleAll} type="checkbox">
+    <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
 </th>
 {#each $columns as column, index (column)}
     {#if column.visible}
