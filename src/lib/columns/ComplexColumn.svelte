@@ -1,5 +1,8 @@
 <script>
     import Tags from "../tags/Tags.svelte";
+    import AiFillFolder from "svelte-icons-pack/ai/AiFillFolder.js";
+    import Icon from 'svelte-icons-pack/Icon.svelte';
+
 
     export let row;
 </script>
@@ -8,6 +11,7 @@
     <div class="preview">{row["preview"]}</div>
     <div class="additional">
         <span class="department">
+            <Icon src={AiFillFolder}></Icon>
             {row["departmentname"]}
         </span>
         {#if row["agentname"]}

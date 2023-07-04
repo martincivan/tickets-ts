@@ -52,6 +52,9 @@
     tagsLoader.load();
     setContext("tagsMap", tagsLoader.tags);
 
+    let error = writable(null)
+    setContext("error", error)
+
 
     const config = new Configuration(
         {
@@ -97,17 +100,19 @@
             loaded = false
         }
 
-        const response = await api.getTicketsGridDatasetRaw(createOptions());
-        const value = await response.value();
-        if (expired === true) {
-            $data = []
+        try {
+            const response = await api.getTicketsGridDatasetRaw(createOptions());
+            const value = await response.value();
+            if (expired === true) {
+                $data = []
+            }
+            $data = $data.concat(value.rows)
+            $cursor = value.cursor
+            loaded = true
+        } catch (e) {
+            error.set(e.toString())
         }
-        $data = $data.concat(value.rows)
-        $cursor = value.cursor
-
         $loading = false
-        loaded = true
-
     }
 
     direction.subscribe(async () => {

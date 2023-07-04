@@ -8,9 +8,13 @@
     let loading = getContext("loading")
     let cursor = getContext("cursor")
     let data = getContext("data")
+    let error = getContext("error")
 
     function getText(loading, cursor, data) {
         showImage = false;
+        if ($error) {
+            return $t("Loading failed. Please try again later.")
+        }
         if (loading) {
             return "Loading...";
         }
