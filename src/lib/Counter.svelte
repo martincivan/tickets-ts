@@ -26,7 +26,7 @@
 
 </script>
 
-<div on:click={load}>
+<span on:click={load}>
     Showing {$data.length}
     {#if $cursor}
         of {count ?? "many"}
@@ -35,4 +35,10 @@
     {#if loading}
         <p>loading...</p>
     {/if}
-</div>
+</span>
+
+<style>
+    span {
+        margin-right: 10px;
+    }
+</style>

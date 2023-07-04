@@ -1,7 +1,8 @@
 <script>
     import Table from "./lib/Table.svelte";
+    import Icon from 'svelte-icons-pack/Icon.svelte';
     import {writable} from "svelte/store";
-    import {columns} from "./lib/columns/columns.js";
+    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
     import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
     import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
@@ -13,6 +14,27 @@
     } from "@qualityunit/liveagent-api";
     import Counter from "./lib/Counter.svelte";
     import {t} from 'svelte-intl-precompile'
+    import UserColumn from "./lib/columns/UserColumn.svelte";
+    import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
+    import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
+
+    let columns = writable([])
+
+    $: columns = writable([
+        new Column($t("User"), UserColumn, false, true),
+        new Column($t("Ticket"), ComplexColumn, false, true),
+        new DateColumnDefinition($t("Date changed"), GetTicketsGridListSortFieldEnum.Datechanged, true),
+        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
+        new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
+        new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
+        new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
+        new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
+        new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
+        new SimpleColumnDefinition("Ticket ID", "code"),
+        new SimpleColumnDefinition("Source", "channelType"),
+        new SimpleColumnDefinition("Status", "status")
+
+    ]);
 
     export let apikey;
     export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
@@ -110,14 +132,48 @@
 </script>
 
 <main>
-    <slot></slot>
-    Loading: {$loading}
-    <Counter {cursor} {data} filter={filters}/>
-    <button on:click={() => loadMore(true)}>{$t("Reload")}</button>
-    <ColumnEditor {columns} bind:this={columnEditor}/>
+    <div class="tools">
+        <slot></slot>
+        <Counter {cursor} {data} filter={filters}/>
+        <button class:loading={$loading} on:click={() => loadMore(true)} title={$t("Reload")}>
+            <Icon size="20px" src={TiArrowSync}/>
+        </button>
+        <ColumnEditor bind:this={columnEditor} {columns}/>
+    </div>
     <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selectedAll}/>
 </main>
 
 <style>
+
+    .tools {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+
+    button {
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        height: 20px;
+        width: 20px;
+    }
+
+    .loading {
+        animation-name: rotate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
 
 </style>

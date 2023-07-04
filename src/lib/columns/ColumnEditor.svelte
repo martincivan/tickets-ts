@@ -1,6 +1,9 @@
 <script>
+    import {t} from 'svelte-intl-precompile'
+    import Icon from 'svelte-icons-pack/Icon.svelte';
 
     import {getContext} from "svelte";
+    import TiCog from "svelte-icons-pack/ti/TiCog.js";
 
     let dialog;
     export let columns;
@@ -37,17 +40,19 @@
     }
 
 </script>
-<button on:click={openDialog}>Edit</button>
+<button class="iconButton" on:click={openDialog} title={$t("Edit")}>
+    <Icon size="20px" src={TiCog}></Icon>
+</button>
 <dialog bind:this={dialog}>
     <h2>Manage grid</h2>
     <div class="checkboxes">
-    {#each $columns as column, index (column)}
-        <label
-                draggable={!column.mandatory}
-                on:dragstart={event => dragstart(event, index)}
-                on:drop|preventDefault={event => drop(event, index)}
-                ondragover="return false"
-                on:dragenter={() => hovering = index}
+        {#each $columns as column, index (column)}
+            <label
+                    draggable={!column.mandatory}
+                    on:dragstart={event => dragstart(event, index)}
+                    on:drop|preventDefault={event => drop(event, index)}
+                    ondragover="return false"
+                    on:dragenter={() => hovering = index}
                 class:is-active={hovering === index && !column.mandatory}
                 class:sortable={column.sortable}
                 class:sorted={$sort === column.sortable}
@@ -59,16 +64,26 @@
     {/each}
     </div>
     <div class="buttons">
-        <button on:click={() => dialog.close()}>Done</button>
+        <button on:click={() => dialog.close()}>{$t("Done")}</button>
     </div>
 
 </dialog>
 
 <style>
+
+    .iconButton {
+        border: 0;
+        padding: 0;
+        background-color: transparent;
+        height: 20px;
+        width: 20px;
+    }
+
     dialog {
         z-index: 1;
         width: 400px
     }
+
     h2, label, .buttons {
         padding-left: 1rem;
         padding-right: 1rem;

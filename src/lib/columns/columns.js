@@ -1,9 +1,5 @@
 import DateColumn from "./DateColumn.svelte";
 import SimpleColumn from "./SimpleColumn.svelte";
-import {writable} from "svelte/store";
-import UserColumn from "./UserColumn.svelte";
-import ComplexColumn from "./ComplexColumn.svelte";
-import {GetTicketsGridListSortFieldEnum} from "@qualityunit/liveagent-api";
 
 class Column {
     renderer;
@@ -38,20 +34,5 @@ class SimpleColumnDefinition extends Column {
     }
 }
 
-let columns = writable([
-    new Column("User", UserColumn, false, true),
-    new Column("Ticket", ComplexColumn, false, true),
-    new DateColumnDefinition("Date changed", GetTicketsGridListSortFieldEnum.Datechanged, true),
-    new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
-    new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
-    new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
-    new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
-    new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
-    new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
-    new SimpleColumnDefinition("Ticket ID", "code"),
-    new SimpleColumnDefinition("Source", "channelType"),
-    new SimpleColumnDefinition("Status", "status")
-
-]);
-export {DateColumnDefinition, SimpleColumnDefinition, Column, columns};
+export {DateColumnDefinition, SimpleColumnDefinition, Column};
 

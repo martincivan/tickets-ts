@@ -24,6 +24,7 @@
     "blueimp-md5": "^2.19.0",
     "md5": "^2.3.0",
     "svelte-avatar": "^1.2.0",
+    "svelte-icons-pack": "^2.1.0",
     "svelte-intl-precompile": "^0.12.1"
   }
 }
