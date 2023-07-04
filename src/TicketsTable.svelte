@@ -17,6 +17,7 @@
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
+    import StatusLabel from "./lib/StatusLabel.svelte";
 
     let columns = writable([])
 
@@ -32,7 +33,7 @@
         new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
         new SimpleColumnDefinition("Ticket ID", "code"),
         new SimpleColumnDefinition("Source", "channelType"),
-        new SimpleColumnDefinition("Status", "status")
+        new Column($t("Status"), StatusLabel, false, false, true),
 
     ]);
 
