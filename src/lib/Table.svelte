@@ -51,7 +51,7 @@
     }
 
     table {
-        height: 100%;
+        max-height: 100%;
         width: 100%;
         border-spacing: 4px 5px;
         border: none;
