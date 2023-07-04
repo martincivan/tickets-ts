@@ -102,7 +102,7 @@
         if (expired === true) {
             $data = []
         }
-        $data = $data.concat(value.data)
+        $data = $data.concat(value.rows)
         $cursor = value.cursor
 
         $loading = false

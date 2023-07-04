@@ -20,7 +20,7 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@qualityunit/liveagent-api": "^0.0.1",
+    "@qualityunit/liveagent-api": "^0.0.4",
     "blueimp-md5": "^2.19.0",
     "md5": "^2.3.0",
     "svelte-avatar": "^1.2.0",
