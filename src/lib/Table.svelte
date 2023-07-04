@@ -28,21 +28,30 @@
         return () => observer.unobserve(loadRow);
     });
 
-
 </script>
 
 <div class="container" bind:this={container}>
     <table>
         <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
-        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}/>
-        <div bind:this={loadRow} on:click={loadMore}>
-            <LoadMore/>
-        </div>
+        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
+        <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
+            <div bind:this={loadRow} class="load" on:click={loadMore}>
+
+                <LoadMore/>
+            </div>
+
+        </td>
+        </TBody>
     </table>
 </div>
 
 <style>
+    .load {
+        width: 100%;
+    }
+
     table {
+        height: 100%;
         width: 100%;
         border-spacing: 4px 5px;
         border: none;
@@ -51,8 +60,20 @@
 
     .container {
         width: 100%;
-        height: 500px;
+        flex-grow: 1;
+        flex-basis: 0;
         overflow-y: scroll;
         overflow-x: hidden;
     }
+
+    @media screen and (max-width: 768px) {
+        table {
+            display: block;
+        }
+
+        .load {
+            display: block;
+        }
+    }
+
 </style>/

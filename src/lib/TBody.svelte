@@ -31,6 +31,7 @@
         {/each}
     </tr>
 {/each}
+<slot></slot>
 </tbody>
 
 <style>

@@ -19,7 +19,7 @@
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
     import StatusLabel from "./lib/StatusLabel.svelte";
 
-    let columns = writable([])
+    let columns;
 
     $: columns = writable([
         new Column($t("User"), UserColumn, false, true),
@@ -38,7 +38,7 @@
     ]);
 
     export let apikey;
-    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
+    export let filters;
     export let middleclickhandler;
 
     export let selectionHandler;
@@ -145,6 +145,12 @@
 </main>
 
 <style>
+
+    main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
     .tools {
         display: flex;

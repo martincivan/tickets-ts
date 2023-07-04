@@ -15,7 +15,7 @@
     waitLocale();
 
     export let apikey;
-    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
+    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B\"]]"
     export let middleclickhandler;
     export let selectionhandler;
     export let selectionMap = {};
