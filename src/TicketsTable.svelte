@@ -149,6 +149,7 @@
         display: flex;
         align-items: center;
         justify-content: right;
+        padding: 0 30px;
     }
 
     button {
