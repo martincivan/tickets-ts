@@ -1,5 +1,10 @@
 <script>
     import {getContext} from "svelte";
+    import Icon from 'svelte-icons-pack/Icon.svelte';
+    import TiArrowSortedUp from "svelte-icons-pack/ti/TiArrowSortedUp.js";
+    import TiArrowUnsorted from "svelte-icons-pack/ti/TiArrowUnsorted.js";
+    import TiArrowSortedDown from "svelte-icons-pack/ti/TiArrowSortedDown.js";
+
 
     export let columns;
     export let contextMenu;
@@ -80,6 +85,17 @@
                 on:click={() => toggleSort(column)}
         >
             <div class="content">
+                {#if column.sortable}
+                    {#if $sort === column.sortable}
+                        {#if $direction}
+                            <Icon  src="{TiArrowSortedUp}"></Icon>
+                        {:else}
+                            <Icon  src="{TiArrowSortedDown}"></Icon>
+                        {/if}
+                    {:else}
+                        <Icon  src="{TiArrowUnsorted}"></Icon>
+                    {/if}
+                {/if}
                 {column.name}
             </div>
         </th>
@@ -91,9 +107,7 @@
     thead {
         position: sticky;
         top: 0;
-        background: white;
         color: #606060;
-        font-weight: 1;
         font-size: 14px;
         font-family: 'Roboto', sans-serif;
     }
@@ -103,8 +117,9 @@
     }
 
     .is-active {
-        background-color: #3273dc;
-        color: #fff;
+        margin-left: 30px;
+        transition: margin-left 0.2s ease-in-out;
+        display: block;
     }
 
     .content {
@@ -114,23 +129,12 @@
         text-align: left;
     }
 
-    .sortable {
-        text-decoration: underline;
-    }
-
-    .sorted {
-        color: blue;
-    }
-
-    .reversed {
-        color: red;
-    }
-
     @media screen and (max-width: 768px) {
         thead {
             display: none;
         }
     }
+
     [draggable=true] {
         cursor: grab;
     }

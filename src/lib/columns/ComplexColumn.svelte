@@ -11,7 +11,7 @@
     <div class="preview">{row["preview"]}</div>
     <div class="additional">
         <span class="department">
-            <Icon src={AiFillFolder}></Icon>
+            <Icon  src={AiFillFolder}></Icon>
             {row["departmentname"]}
         </span>
         {#if row["agentname"]}
@@ -34,8 +34,8 @@
 
     .department {
         font-size: 12px;
-        color: #606060;
-        background-color: #d6d6d6;
+        /*color: #bcbcbc;*/
+        background-color: rgba(255, 255, 255, 0.2);
         border-radius: 25px;
         padding: 3px 10px;
     }
