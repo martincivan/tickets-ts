@@ -31,18 +31,13 @@
 </script>
 
 <div class="container" bind:this={container}>
-    <table>
-        <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
-        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
-        <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
-            <div bind:this={loadRow} class="load" on:click={loadMore}>
+    <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
+    <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
+    </TBody>
+    <div bind:this={loadRow} class="load" on:click={loadMore}>
+        <LoadMore/>
+    </div>
 
-                <LoadMore/>
-            </div>
-
-        </td>
-        </TBody>
-    </table>
 </div>
 
 <style>
@@ -59,6 +54,8 @@
     }
 
     .container {
+        display: grid;
+        grid-template-columns: 25px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
         flex-grow: 1;
         flex-basis: 0;

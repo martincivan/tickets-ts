@@ -60,13 +60,13 @@
 
 </script>
 
-<thead>
-<th class="headCheckbox">
+<div class="headCheckbox headCell">
     <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
-</th>
+</div>
 {#each $columns as column, index (column)}
     {#if column.visible}
-        <th
+        <div
+                class="headCell"
                 on:contextmenu|preventDefault={contextMenu}
                 draggable={!column.mandatory}
                 on:dragstart={event => dragstart(event, index)}
@@ -82,20 +82,14 @@
             <div class="content">
                 {column.name}
             </div>
-        </th>
+        </div>
     {/if}
 {/each}
-</thead>
 
 <style>
-    thead {
+    .headCell {
         position: sticky;
         top: 0;
-        background: white;
-        color: #606060;
-        font-weight: 1;
-        font-size: 14px;
-        font-family: 'Roboto', sans-serif;
     }
 
     .headCheckbox {
