@@ -6,35 +6,37 @@
 
 </script>
 
-<tbody>
 {#each $data as row, i}
-    <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+    <!--<tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button == 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
 
         }
-    }}>
-        <td>
-            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
-                   on:click|stopPropagation={() => {}}>
-        </td>
-        {#each columns as column}
-            {#if column.visible}
-                <td>
-                    <div class="content">
-                        <svelte:component this={column.renderer} {column} {row}></svelte:component>
-                    </div>
-                </td>
+    }}>-->
+    <div>
+        <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
+               on:click|stopPropagation={() => {}}>
+    </div>
+    {#each columns as column}
+        {#if column.visible}
+            <div class="bodyCell">
+                <div class="content">
+                    <svelte:component this={column.renderer} {column} {row}></svelte:component>
+                </div>
+            </div>
             {/if}
         {/each}
-    </tr>
+    <!--</tr>-->
 {/each}
 <slot></slot>
-</tbody>
 
 <style>
+    .bodyCell {
+        overflow: hidden;
+    }
+
     tr {
         border-radius: 12px;
         box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
