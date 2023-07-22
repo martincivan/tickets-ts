@@ -30,7 +30,8 @@
 
 </script>
 
-<div class="container" bind:this={container}>
+<div bind:this={container} class="container"
+     style="grid-template-columns: 25px {$columns.filter(c=>c.visible).map(c => c.size).join(' ')};">
     <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
     <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
     </TBody>
@@ -42,29 +43,20 @@
 
 <style>
     .load {
-        width: 100%;
-    }
-
-    table {
-        max-height: 100%;
-        width: 100%;
-        border-spacing: 4px 5px;
-        border: none;
-        table-layout: fixed;
+        grid-column: 1/-1;
     }
 
     .container {
         display: grid;
-        grid-template-columns: 25px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        row-gap: 5px;
         width: 100%;
-        flex-grow: 1;
-        flex-basis: 0;
         overflow-y: scroll;
         overflow-x: hidden;
+        max-height: 100%;
     }
 
     @media screen and (max-width: 768px) {
-        table {
+        .container {
             display: block;
         }
 
@@ -73,4 +65,4 @@
         }
     }
 
-</style>/
+</style>

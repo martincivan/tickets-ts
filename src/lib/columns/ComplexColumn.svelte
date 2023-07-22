@@ -7,11 +7,11 @@
     export let row;
 </script>
 
-<div>
+<div class="cell">
     <div class="preview">{row["preview"]}</div>
     <div class="additional">
         <span class="department">
-            <Icon  src={AiFillFolder}></Icon>
+            <Icon src={AiFillFolder}></Icon>
             {row["departmentname"]}
         </span>
         {#if row["agentname"]}
@@ -24,12 +24,17 @@
 </div>
 
 <style>
-    .preview {
+    .cell {
         overflow: hidden;
+    }
+
+    .preview {
+        overflow-x: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         padding-right: 5px;
         font-size: 13px;
+        min-width: 50px;
     }
 
     .department {

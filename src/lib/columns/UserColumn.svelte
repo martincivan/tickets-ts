@@ -25,6 +25,7 @@
         r = 0;
     }
 
+
 </script>
 
 <div class="container">
@@ -34,12 +35,16 @@
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
+        {#if Array.isArray(row["phones"]) && row["phones"].length > 0}
+            <div class="email">{row["phones"]}</div>
+        {/if}
     </div>
 </div>
 
 <style>
     .container {
         display: flex;
+
     }
 
     .avatar {
@@ -48,16 +53,25 @@
 
     .name {
         font-size: 14px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .email {
         font-size: 12px;
         color: #606060;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .texts {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 </style>

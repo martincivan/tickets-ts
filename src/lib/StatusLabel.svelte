@@ -16,7 +16,7 @@
             .substring(1).match(/.{2}/g)
             .map(x => parseInt(x, 16)).join(", ")
 
-    export let row;
+    export let status;
     const texts = {
         "A": {"text": $t("Answered"), "icon": TiArrowBack, "color": "#708090"},
         "T": {"text": $t("Chatting"), "icon": BsChatLeft, "color": "#2196f3"},
@@ -32,9 +32,9 @@
 
 </script>
 
-<div class={row.status} style="color: {texts[row.status].color}; background-color: rgba({hexToRgb(texts[row.status].color)}, .2);">
-    <Icon color="{texts[row.status].color}" src={texts[row.status].icon}></Icon>
-    {texts[row.status].text}
+<div class={status} style="color: {texts[status].color}; background-color: rgba({hexToRgb(texts[status].color)}, .2);">
+    <Icon color="{texts[status].color}" src={texts[status].icon}></Icon>
+    {texts[status].text}
 </div>
 
 <style>

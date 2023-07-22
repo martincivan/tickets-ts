@@ -15,14 +15,13 @@
     waitLocale();
 
     export let apikey;
-    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,N,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
+    export let filters = "[[\"rstatus\",\"IN\",\"A,P,T,C,R,W\"],[\"channel_type\",\"IN\",\"B,M,E,F,A,I,Q,S,C,W,T,V\"]]"
     export let middleclickhandler;
     export let selectionhandler;
     export let selectionMap = {};
     export let selectedAll = false;
 
     function handleSelection(selection, sAll) {
-        console.log("selection", selection)
         selectionMap = selection;
         selectedAll = sAll;
         if (selectionhandler) {

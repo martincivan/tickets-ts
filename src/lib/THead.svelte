@@ -65,44 +65,50 @@
 
 </script>
 
-<div class="headCheckbox headCell">
-    <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
-</div>
-{#each $columns as column, index (column)}
-    {#if column.visible}
-        <div
-                class="headCell"
-                on:contextmenu|preventDefault={contextMenu}
-                draggable={!column.mandatory}
-                on:dragstart={event => dragstart(event, index)}
-                on:drop|preventDefault={event => drop(event, index)}
-                ondragover="return false"
-                on:dragenter={() => hovering = index}
-                class:is-active={hovering === index && !column.mandatory}
-                class:sortable={column.sortable}
-                class:sorted={$sort === column.sortable}
-                class:reversed={$sort === column.sortable && !$direction}
-                on:click={() => toggleSort(column)}
-        >
-            <div class="content">
-                {#if column.sortable}
-                    {#if $sort === column.sortable}
-                        {#if $direction}
-                            <Icon  src="{TiArrowSortedUp}"></Icon>
+<div class="head">
+    <div class="headCheckbox headCell">
+        <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
+    </div>
+    {#each $columns as column, index (column)}
+        {#if column.visible}
+            <div
+                    class="headCell"
+                    on:contextmenu|preventDefault={contextMenu}
+                    draggable={!column.mandatory}
+                    on:dragstart={event => dragstart(event, index)}
+                    on:drop|preventDefault={event => drop(event, index)}
+                    ondragover="return false"
+                    on:dragenter={() => hovering = index}
+                    class:is-active={hovering === index && !column.mandatory}
+                    class:sortable={column.sortable}
+                    class:sorted={$sort === column.sortable}
+                    class:reversed={$sort === column.sortable && !$direction}
+                    on:click={() => toggleSort(column)}
+            >
+                <div class="content">
+                    {#if column.sortable}
+                        {#if $sort === column.sortable}
+                            {#if $direction}
+                                <Icon src="{TiArrowSortedUp}"></Icon>
+                            {:else}
+                                <Icon src="{TiArrowSortedDown}"></Icon>
+                            {/if}
                         {:else}
-                            <Icon  src="{TiArrowSortedDown}"></Icon>
+                            <Icon src="{TiArrowUnsorted}"></Icon>
                         {/if}
-                    {:else}
-                        <Icon  src="{TiArrowUnsorted}"></Icon>
                     {/if}
-                {/if}
-                {column.name}
+                    {column.name}
+                </div>
             </div>
-        </div>
-    {/if}
-{/each}
-
+        {/if}
+    {/each}
+</div>
 <style>
+
+    .head {
+        display: contents;
+    }
+
     .headCell {
         position: sticky;
         top: 0;
@@ -129,7 +135,7 @@
     }
 
     @media screen and (max-width: 768px) {
-        thead {
+        .head {
             display: none;
         }
     }

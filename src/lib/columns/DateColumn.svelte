@@ -3,7 +3,6 @@
 
     export let row;
     export let column;
-
 </script>
 <div>
     {#if row[column.field] instanceof Date && !isNaN(row[column.field])}

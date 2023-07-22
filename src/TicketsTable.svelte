@@ -17,24 +17,21 @@
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
-    import StatusLabel from "./lib/StatusLabel.svelte";
+    import StatusColumn from "./lib/columns/StatusColumn.svelte";
+    import MessageCountsColumn from "./lib/columns/MessageCountsColumn.svelte";
 
     let columns;
 
     $: columns = writable([
-        new Column($t("User"), UserColumn, false, true),
-        new Column($t("Ticket"), ComplexColumn, false, true),
-        new DateColumnDefinition($t("Date changed"), GetTicketsGridListSortFieldEnum.Datechanged, true),
-        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
-        new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
-        new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
-        new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
-        new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
+        new Column($t("User"), UserColumn, "minmax(100px,max-content)", false, true),
+        new Column($t("Ticket"), ComplexColumn, "minmax(100px,2fr)", false, true),
+        new Column($t("Status"), StatusColumn, "175px", false, false, true),
         new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
+        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated, true),
+        new DateColumnDefinition($t("Date changed"), "lastActivity", true),
         new SimpleColumnDefinition("Ticket ID", "code"),
         new SimpleColumnDefinition("Source", "channelType"),
-        new Column($t("Status"), StatusLabel, false, false, true),
-
+        new Column($t("Message counts"), MessageCountsColumn, "minmax(25px,75px)", false, false, false),
     ]);
 
     export let apikey;

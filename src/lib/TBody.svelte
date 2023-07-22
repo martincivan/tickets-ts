@@ -7,70 +7,94 @@
 </script>
 
 {#each $data as row, i}
-    <!--<tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+
+    <div class="row rowGlobal" on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button == 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
 
         }
-    }}>-->
-    <div>
-        <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
-               on:click|stopPropagation={() => {}}>
-    </div>
-    {#each columns as column}
-        {#if column.visible}
-            <div class="bodyCell">
-                <div class="content">
-                    <svelte:component this={column.renderer} {column} {row}></svelte:component>
+    }}>
+        <div class="cell select">
+            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
+                   on:click|stopPropagation={() => {}}>
+        </div>
+        {#each columns as column}
+            {#if column.visible}
+                <div class="cell">
+                    <div class="content">
+                        <svelte:component this={column.renderer} {column} {row}></svelte:component>
+                    </div>
                 </div>
-            </div>
             {/if}
         {/each}
-    <!--</tr>-->
+    </div>
 {/each}
 <slot></slot>
 
 <style>
-    .bodyCell {
-        overflow: hidden;
-    }
-
-    tr {
-        border-radius: 12px;
-        box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
-    }
-
-    tr:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    td {
-        padding-bottom: 5px;
-        padding-top: 5px;
-    }
-
     .content {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .cell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    :global(.rowGlobal) {
+    }
+
+    .row {
+        display: contents;
+    }
+
+    .row > :first-child {
+        border-start-start-radius: 10px;
+        border-end-start-radius: 10px;
+        border-inline-start: 1px solid black;
+    }
+
+    .row > :last-child {
+        border-start-end-radius: 10px;
+        border-end-end-radius: 10px;
+        border-inline-end: 1px solid black;
+
+    }
+
+    .row > div {
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+    }
+
+    .row:hover > div {
+        background-color: rgba(var(--inverted), 0.1);
     }
 
     @media screen and (max-width: 768px) {
-        tr {
+        .row {
             display: block;
-            height: initial;
+            flex-direction: column;
+            border-radius: 10px;
+            border: 1px solid black;
+            margin-top: 5px;
         }
 
-        td {
+        .row > :first-child {
+            border: none;
+        }
+
+        .row > div {
+            border: none;
             display: none;
         }
 
-        td:nth-child(-n+4) {
+        .row div:nth-child(n+2):nth-child(-n+5) {
             display: block;
-            margin-bottom: 10px;
         }
-
     }
+
 </style>
