@@ -1,14 +1,6 @@
 <script>
-    import Icon from 'svelte-icons-pack/Icon.svelte';
     import {t} from 'svelte-intl-precompile'
-    import TiArrowBack from "svelte-icons-pack/ti/TiArrowBack.js";
-    import TiTick from "svelte-icons-pack/ti/TiTick.js";
-    import FaSolidEnvelopeOpenText from "svelte-icons-pack/fa/FaSolidEnvelopeOpenText.js";
-    import BsChatLeft from "svelte-icons-pack/bs/BsChatLeft.js";
-    import IoTrash from "svelte-icons-pack/io/IoTrash.js";
-    import CgAlarm from "svelte-icons-pack/cg/CgAlarm.js";
-    import IoSunnySharp from "svelte-icons-pack/io/IoSunnySharp.js";
-    import AiFillFire from "svelte-icons-pack/ai/AiFillFire.js";
+    import Icon from "./Icon.svelte";
 
     const hexToRgb = hex =>
         hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
@@ -18,22 +10,22 @@
 
     export let status;
     const texts = {
-        "A": {"text": $t("Answered"), "icon": TiArrowBack, "color": "#708090"},
-        "T": {"text": $t("Chatting"), "icon": BsChatLeft, "color": "#2196f3"},
-        "P": {"text": $t("Calling"), "icon": TiArrowBack, "color": "#999"},
-        "X": {"text": $t("Deleted"), "icon": IoTrash, "color": "#aac"},
-        "B": {"text": $t("Spam"), "icon": AiFillFire, "color": "#caa"},
-        "I": {"text": $t("Init"), "icon": TiArrowBack, "color": "#424242"},
-        "R": {"text": $t("Resolved"), "icon": TiTick, "color": "#aca"},
-        "N": {"text": $t("New"), "icon": IoSunnySharp, "color": "#ff6c00"},
-        "C": {"text": $t("Open"), "icon": FaSolidEnvelopeOpenText, "color": "#ffa700"},
-        "W": {"text": $t("Postponed"), "icon": CgAlarm, "color": "#673ab7"},
+        "A": {"text": $t("Answered"), "icon": "la-ticket-answered", "color": "#708090"},
+        "T": {"text": $t("Chatting"), "icon": "la-chatting", "color": "#2196f3"},
+        "P": {"text": $t("Calling"), "icon": "la-call-window", "color": "#999"},
+        "X": {"text": $t("Deleted"), "icon": "la-ticket-deleted", "color": "#aac"},
+        "B": {"text": $t("Spam"), "icon": "la-spam", "color": "#caa"},
+        "I": {"text": $t("Init"), "icon": "la-signature", "color": "#424242"},
+        "R": {"text": $t("Resolved"), "icon": "la-ticket-resolved", "color": "#aca"},
+        "N": {"text": $t("New"), "icon": "la-ticket-new", "color": "#ff6c00"},
+        "C": {"text": $t("Open"), "icon": "la-ticket-open", "color": "#ffa700"},
+        "W": {"text": $t("Postponed"), "icon": "la-ticket-postponed", "color": "#673ab7"},
     }
 
 </script>
 
 <div class={status} style="color: {texts[status].color}; background-color: rgba({hexToRgb(texts[status].color)}, .2);">
-    <Icon color="{texts[status].color}" src={texts[status].icon}></Icon>
+    <Icon i={texts[status].icon}></Icon>
     {texts[status].text}
 </div>
 

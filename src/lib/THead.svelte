@@ -1,10 +1,6 @@
 <script>
     import {getContext} from "svelte";
-    import Icon from 'svelte-icons-pack/Icon.svelte';
-    import TiArrowSortedUp from "svelte-icons-pack/ti/TiArrowSortedUp.js";
-    import TiArrowUnsorted from "svelte-icons-pack/ti/TiArrowUnsorted.js";
-    import TiArrowSortedDown from "svelte-icons-pack/ti/TiArrowSortedDown.js";
-
+    import Icon from "./Icon.svelte";
 
     export let columns;
     export let contextMenu;
@@ -89,12 +85,12 @@
                     {#if column.sortable}
                         {#if $sort === column.sortable}
                             {#if $direction}
-                                <Icon src="{TiArrowSortedUp}"></Icon>
+                                <Icon i="la-move-down"></Icon>
                             {:else}
-                                <Icon src="{TiArrowSortedDown}"></Icon>
+                                <Icon i="la-move-up"></Icon>
                             {/if}
                         {:else}
-                            <Icon src="{TiArrowUnsorted}"></Icon>
+                            <Icon i="la-change-order"></Icon>
                         {/if}
                     {/if}
                     {column.name}

@@ -1,6 +1,5 @@
 <script>
     import Table from "./lib/Table.svelte";
-    import Icon from 'svelte-icons-pack/Icon.svelte';
     import {writable} from "svelte/store";
     import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
     import {TagsLoader} from "./lib/tags/tags.js";
@@ -16,9 +15,9 @@
     import {t} from 'svelte-intl-precompile'
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
-    import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
     import StatusColumn from "./lib/columns/StatusColumn.svelte";
     import MessageCountsColumn from "./lib/columns/MessageCountsColumn.svelte";
+    import Icon from "./lib/Icon.svelte";
 
     let columns;
 
@@ -139,7 +138,7 @@
         <slot></slot>
         <Counter {cursor} {data} filter={filters}/>
         <button class:loading={$loading} on:click={() => loadMore(true)} title={$t("Reload")}>
-            <Icon size="20px" src={TiArrowSync}/>
+            <Icon i="la-sync"/>
         </button>
         <ColumnEditor bind:this={columnEditor} {columns}/>
     </div>

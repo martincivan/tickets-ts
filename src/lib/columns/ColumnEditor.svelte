@@ -1,9 +1,8 @@
 <script>
     import {t} from 'svelte-intl-precompile'
-    import Icon from 'svelte-icons-pack/Icon.svelte';
 
     import {getContext} from "svelte";
-    import TiCog from "svelte-icons-pack/ti/TiCog.js";
+    import Icon from "../Icon.svelte";
 
     let dialog;
     export let columns;
@@ -41,7 +40,7 @@
 
 </script>
 <button class="iconButton" on:click={openDialog} title={$t("Edit")}>
-    <Icon size="20px" src={TiCog}></Icon>
+    <Icon i="la-tools"></Icon>
 </button>
 <dialog bind:this={dialog}>
     <h2>Manage grid</h2>
