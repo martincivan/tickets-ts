@@ -1,4 +1,3 @@
-import DateColumn from "./DateColumn.svelte";
 import SimpleColumn from "./SimpleColumn.svelte";
 
 class Column {
@@ -7,22 +6,12 @@ class Column {
     sortable;
     mandatory;
     visible;
-    constructor(name, renderer, sortable = null, mandatory = false, visible = true) {
+    constructor(name, renderer, sortable = null, mandatory = false, visible = false) {
         this.name = name;
         this.sortable = sortable;
         this.mandatory = mandatory;
         this.renderer = renderer;
         this.visible = visible || mandatory;
-    }
-}
-
-class DateColumnDefinition extends Column {
-    field;
-    relative;
-    constructor(name, field, relative = false) {
-        super(name, DateColumn, field, false);
-        this.field = field;
-        this.relative = relative;
     }
 }
 
@@ -34,5 +23,5 @@ class SimpleColumnDefinition extends Column {
     }
 }
 
-export {DateColumnDefinition, SimpleColumnDefinition, Column};
+export {SimpleColumnDefinition, Column};
 

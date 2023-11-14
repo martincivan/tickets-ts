@@ -9,7 +9,7 @@
 <tbody>
 {#each $data as row, i}
     <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
-        if (event.button == 1 && middleclickhandler) {
+        if (event.button === 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
@@ -36,6 +36,7 @@
 
 <style>
     tr {
+        height: 80px;
         border-radius: 12px;
         box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
     }

@@ -2,7 +2,7 @@
     import Table from "./lib/Table.svelte";
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import {writable} from "svelte/store";
-    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
+    import {Column} from "./lib/columns/columns.js";
     import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
     import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
@@ -15,26 +15,14 @@
     import Counter from "./lib/Counter.svelte";
     import {t} from 'svelte-intl-precompile'
     import UserColumn from "./lib/columns/UserColumn.svelte";
-    import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
+    import ComplexColumn from "./lib/columns/StatusColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
-    import StatusLabel from "./lib/StatusLabel.svelte";
 
     let columns;
 
     $: columns = writable([
         new Column($t("User"), UserColumn, false, true),
-        new Column($t("Ticket"), ComplexColumn, false, true),
-        new DateColumnDefinition($t("Date changed"), GetTicketsGridListSortFieldEnum.Datechanged, true),
-        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
-        new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
-        new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
-        new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
-        new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
-        new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
-        new SimpleColumnDefinition("Ticket ID", "code"),
-        new SimpleColumnDefinition("Source", "channelType"),
-        new Column($t("Status"), StatusLabel, false, false, true),
-
+        new Column($t("Status"), ComplexColumn, false, true)
     ]);
 
     export let apikey;
@@ -126,7 +114,7 @@
 
     let columnEditor;
 
-    let contextMenu = (e) => {
+    let contextMenu = () => {
         columnEditor.openDialog();
     }
 

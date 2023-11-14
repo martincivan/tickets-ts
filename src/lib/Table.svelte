@@ -36,10 +36,8 @@
         <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
         <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
             <div bind:this={loadRow} class="load" on:click={loadMore}>
-
                 <LoadMore/>
             </div>
-
         </td>
         </TBody>
     </table>
@@ -75,5 +73,4 @@
             display: block;
         }
     }
-
-</style>/
+</style>

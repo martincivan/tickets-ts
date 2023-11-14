@@ -15,8 +15,13 @@ $: name = $tagsMap[tagId]?.name ?? "";
 
 <style>
     span {
+        display: inline-block;
+        text-align: center;
         font-size: 12px;
+        font-weight: bold;
         border-radius: 25px;
         padding: 3px 10px;
+        margin: 5px;
+        line-height: 24px;
     }
 </style>
