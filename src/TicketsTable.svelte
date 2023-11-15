@@ -15,13 +15,15 @@
     import {t} from 'svelte-intl-precompile'
     import UserColumn from "./lib/columns/UserColumn.svelte";
     import StatusColumn from "./lib/columns/StatusColumn.svelte";
+    import ImportanceColumn from "./lib/columns/ImportanceColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
 
     let columns;
 
     $: columns = writable([
         new Column($t("User"), UserColumn, false),
-        new Column($t("Status"), StatusColumn, false)
+        new Column($t("Status"), StatusColumn, false),
+        new Column($t("Importance"), ImportanceColumn, true)
     ]);
 
     export let apikey;

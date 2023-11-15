@@ -13,26 +13,27 @@
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
-
         }
     }}>
-        <td>
+        <td class="Checkbox">
             <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
                    on:click|stopPropagation={() => {}}>
         </td>
         {#each columns as column}
             <td>
-                <div class="content">
-                    <svelte:component this={column.renderer} {column} {row}></svelte:component>
-                </div>
+                <svelte:component this={column.renderer} {column} {row}></svelte:component>
             </td>
         {/each}
     </tr>
 {/each}
-<slot></slot>
+<slot/>
 </tbody>
 
 <style>
+    .Checkbox {
+        border-left: 5px solid pink
+    }
+
     tr {
         height: 80px;
         border-radius: 12px;
@@ -46,12 +47,6 @@
     td {
         padding-bottom: 5px;
         padding-top: 5px;
-    }
-
-    .content {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 
     @media screen and (max-width: 768px) {
@@ -68,6 +63,5 @@
             display: block;
             margin-bottom: 10px;
         }
-
     }
 </style>

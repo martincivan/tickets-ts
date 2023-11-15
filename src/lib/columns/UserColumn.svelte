@@ -2,8 +2,10 @@
     import Avatar from "svelte-avatar";
     import md5 from "md5";
     import {hashCode} from "../hash.js";
+    import Column from "./Column.svelte";
 
     export let row;
+    export let className = "userColumn";
 
     let name = (row["firstname"] + " " + row["lastname"]);
     if (!name.trim()) {
@@ -27,7 +29,7 @@
 
 </script>
 
-<div class="container">
+<Column {className}>
     <div class="avatar">
         <Avatar bgColor="rgb({r},{g},{b})" name={name} src={url}></Avatar>
     </div>
@@ -35,13 +37,12 @@
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
     </div>
-</div>
+</Column>
 
 <style>
-    .container {
+    :global(.column.userColumn) {
         display: flex;
     }
-
     .avatar {
         margin-right: 10px;
     }
