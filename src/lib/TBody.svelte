@@ -21,13 +21,11 @@
                    on:click|stopPropagation={() => {}}>
         </td>
         {#each columns as column}
-            {#if column.visible}
-                <td>
-                    <div class="content">
-                        <svelte:component this={column.renderer} {column} {row}></svelte:component>
-                    </div>
-                </td>
-            {/if}
+            <td>
+                <div class="content">
+                    <svelte:component this={column.renderer} {column} {row}></svelte:component>
+                </div>
+            </td>
         {/each}
     </tr>
 {/each}

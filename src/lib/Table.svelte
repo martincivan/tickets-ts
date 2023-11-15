@@ -6,7 +6,6 @@
 
     export let data;
     export let columns;
-    export let contextMenu;
     export let loadMore;
     export let middleclickhandler;
     export let selectedAll;
@@ -32,7 +31,7 @@
 
 <div class="container" bind:this={container}>
     <table>
-        <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
+        <THead {columns} {data} {selectedAll}/>
         <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
         <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
             <div bind:this={loadRow} class="load" on:click={loadMore}>

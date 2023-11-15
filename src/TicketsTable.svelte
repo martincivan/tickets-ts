@@ -5,7 +5,6 @@
     import {Column} from "./lib/columns/columns.js";
     import {TagsLoader} from "./lib/tags/tags.js";
     import {setContext} from "svelte";
-    import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
     import {
         Configuration,
         GetAgentsGridListSortDirEnum,
@@ -15,20 +14,19 @@
     import Counter from "./lib/Counter.svelte";
     import {t} from 'svelte-intl-precompile'
     import UserColumn from "./lib/columns/UserColumn.svelte";
-    import ComplexColumn from "./lib/columns/StatusColumn.svelte";
+    import StatusColumn from "./lib/columns/StatusColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
 
     let columns;
 
     $: columns = writable([
-        new Column($t("User"), UserColumn, false, true),
-        new Column($t("Status"), ComplexColumn, false, true)
+        new Column($t("User"), UserColumn, false),
+        new Column($t("Status"), StatusColumn, false)
     ]);
 
     export let apikey;
     export let filters;
     export let middleclickhandler;
-
     export let selectionHandler;
 
     let selection = writable({})
@@ -112,12 +110,6 @@
     setContext("direction", direction)
     setContext("sort", sort)
 
-    let columnEditor;
-
-    let contextMenu = () => {
-        columnEditor.openDialog();
-    }
-
     data.subscribe(d => {
         selection.set(d.filter((e) => (e.__selected ?? false)).map((e) => e.conversationid))
     });
@@ -132,9 +124,8 @@
         <button class:loading={$loading} on:click={() => loadMore(true)} title={$t("Reload")}>
             <Icon size="20px" src={TiArrowSync}/>
         </button>
-        <ColumnEditor bind:this={columnEditor} {columns}/>
     </div>
-    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selectedAll}/>
+    <Table {columns} {data} {loadMore} {middleclickhandler} {selectedAll}/>
 </main>
 
 <style>

@@ -5,44 +5,15 @@
     import TiArrowUnsorted from "svelte-icons-pack/ti/TiArrowUnsorted.js";
     import TiArrowSortedDown from "svelte-icons-pack/ti/TiArrowSortedDown.js";
 
-
     export let columns;
-    export let contextMenu;
-
     export let selectedAll;
     export let data;
-
-
-    let hovering = false;
 
     function toggleAll() {
         $data = $data.map(row => {
             row.__selected = !$selectedAll
             return row
         })
-    }
-
-    const drop = (event, target) => {
-        event.dataTransfer.dropEffect = 'move';
-        const start = parseInt(event.dataTransfer.getData("text/plain"));
-        const newTracklist = $columns
-        if (newTracklist[start].mandatory || newTracklist[target].mandatory) return
-
-        if (start < target) {
-            newTracklist.splice(target + 1, 0, newTracklist[start]);
-            newTracklist.splice(start, 1);
-        } else {
-            newTracklist.splice(target, 0, newTracklist[start]);
-            newTracklist.splice(start + 1, 1);
-        }
-        columns.set(newTracklist)
-        hovering = null
-    }
-
-    const dragstart = (event, start) => {
-        event.dataTransfer.effectAllowed = 'move';
-        event.dataTransfer.dropEffect = 'move';
-        event.dataTransfer.setData('text/plain', start);
     }
 
     const sort = getContext("sort")
@@ -66,41 +37,34 @@
 </script>
 
 <thead>
-<th class="headCheckbox">
-    <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
-</th>
-{#each $columns as column, index (column)}
-    {#if column.visible}
-        <th
-                on:contextmenu|preventDefault={contextMenu}
-                draggable={!column.mandatory}
-                on:dragstart={event => dragstart(event, index)}
-                on:drop|preventDefault={event => drop(event, index)}
-                ondragover="return false"
-                on:dragenter={() => hovering = index}
-                class:is-active={hovering === index && !column.mandatory}
+    <tr>
+        <th class="headCheckbox">
+            <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
+        </th>
+        {#each $columns as column, index (column)}
+            <th
                 class:sortable={column.sortable}
                 class:sorted={$sort === column.sortable}
                 class:reversed={$sort === column.sortable && !$direction}
                 on:click={() => toggleSort(column)}
-        >
-            <div class="content">
-                {#if column.sortable}
-                    {#if $sort === column.sortable}
-                        {#if $direction}
-                            <Icon  src="{TiArrowSortedUp}"></Icon>
+            >
+                <div class="content">
+                    {#if column.sortable}
+                        {#if $sort === column.sortable}
+                            {#if $direction}
+                                <Icon  src="{TiArrowSortedUp}"></Icon>
+                            {:else}
+                                <Icon  src="{TiArrowSortedDown}"></Icon>
+                            {/if}
                         {:else}
-                            <Icon  src="{TiArrowSortedDown}"></Icon>
+                            <Icon  src="{TiArrowUnsorted}"></Icon>
                         {/if}
-                    {:else}
-                        <Icon  src="{TiArrowUnsorted}"></Icon>
                     {/if}
-                {/if}
-                {column.name}
-            </div>
-        </th>
-    {/if}
-{/each}
+                    {column.name}
+                </div>
+            </th>
+        {/each}
+    </tr>
 </thead>
 
 <style>
@@ -116,12 +80,6 @@
         width: 20px;
     }
 
-    .is-active {
-        margin-left: 30px;
-        transition: margin-left 0.2s ease-in-out;
-        display: block;
-    }
-
     .content {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -133,10 +91,6 @@
         thead {
             display: none;
         }
-    }
-
-    [draggable=true] {
-        cursor: grab;
     }
 
     .sortable {
