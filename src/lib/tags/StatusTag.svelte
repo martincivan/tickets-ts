@@ -1,5 +1,4 @@
 <script>
-    import Icon from 'svelte-icons-pack/Icon.svelte';
     import {t} from 'svelte-intl-precompile'
     import TiArrowBack from "svelte-icons-pack/ti/TiArrowBack.js";
     import TiTick from "svelte-icons-pack/ti/TiTick.js";
@@ -9,6 +8,7 @@
     import CgAlarm from "svelte-icons-pack/cg/CgAlarm.js";
     import IoSunnySharp from "svelte-icons-pack/io/IoSunnySharp.js";
     import AiFillFire from "svelte-icons-pack/ai/AiFillFire.js";
+    import IconTag from "./IconTag.svelte";
 
     const hexToRgb = hex =>
         hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
@@ -30,14 +30,15 @@
         "W": {"text": $t("Postponed"), "icon": CgAlarm, "color": "#673ab7"},
     }
 
+    export let style = `color: ${texts[status] ? texts[status].color : 'defaultColor'}; background-color: rgba(${texts[status] ? hexToRgb(texts[status].color) : 'defaultRgb'}, .2)`;
+    export let icon = {
+        color: texts[status] ? texts[status].color : 'defaultColor',
+        src: texts[status] ? texts[status].icon : null
+    }
+
 </script>
 
-<div class={status} style="color: {texts[status] ? texts[status].color : 'defaultColor'}; background-color: rgba({texts[status] ? hexToRgb(texts[status].color) : 'defaultRgb'}, .2);">
-    {#if texts[status]}
-        <Icon color="{texts[status].color}" src={texts[status].icon}></Icon>
-        {texts[status].text}
-    {/if}
-</div>
+<IconTag className={status["text"]} {style} text={texts[status].text} {icon} />
 
 <style>
     div {

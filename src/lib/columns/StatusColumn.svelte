@@ -2,7 +2,7 @@
     import Tags from "../tags/Tags.svelte";
     import AiFillFolder from "svelte-icons-pack/ai/AiFillFolder.js";
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import StatusLabel from "../StatusLabel.svelte";
+    import StatusLabel from "../tags/StatusTag.svelte";
     import Column from "./Column.svelte";
 
     export let row;
