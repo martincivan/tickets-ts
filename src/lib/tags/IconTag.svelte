@@ -3,8 +3,8 @@
     import Tag from "./Tag.svelte";
 
     export let text;
-    export let className;
-    export let style;
+    export let className = "IconTag";
+    export let style ="";
     export let icon;
 </script>
 

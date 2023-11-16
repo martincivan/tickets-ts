@@ -3,6 +3,9 @@
     import md5 from "md5";
     import {hashCode} from "../hash.js";
     import Column from "./Column.svelte";
+    import IconTag from "../tags/IconTag.svelte";
+    import FaBuilding from 'svelte-icons-pack/fa/FaBuilding.js';
+    import FaTimes from 'svelte-icons-pack/fa/FaTimesCircle.js';
 
     export let row;
     export let className = "userColumn";
@@ -27,6 +30,15 @@
         r = 0;
     }
 
+    let iconCompany = {
+        color: "#606060",
+        src: FaBuilding
+    };
+    let iconNoCompany = {
+        color: "#606060",
+        src: FaTimes
+    };
+    let company = row["company"] === "Y" ? "Company" : "No Company";
 </script>
 
 <Column {className}>
@@ -36,6 +48,7 @@
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
+        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} icon={company === "Company" ? iconCompany : iconNoCompany} />
     </div>
 </Column>
 
@@ -43,6 +56,17 @@
     :global(.column.userColumn) {
         display: flex;
     }
+
+    :global(.Tag.CompanyTag) {
+        background-color: #E5E8EC;
+    }
+
+    :global(.Tag.NoCompanyTag) {
+        background-color: white;
+        border: 1px solid #E5E8EC;
+    }
+
+
     .avatar {
         margin-right: 10px;
     }

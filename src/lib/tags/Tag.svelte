@@ -4,13 +4,13 @@
     export let style;
 </script>
 
-<div class="tag {className}" style={style}>
+<div class="Tag {className}" style={style}>
     <slot/>
     <span class="text">{text}</span>
 </div>
 
 <style>
-    .tag {
+    .Tag {
         display: inline-block;
         text-align: center;
         font-size: 12px;
