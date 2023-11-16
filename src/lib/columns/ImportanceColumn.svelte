@@ -2,6 +2,9 @@
     import Column from "./Column.svelte";
     import DateDisplay from "../DateDisplay.svelte";
     import {t} from 'svelte-intl-precompile'
+    import Icon from 'svelte-icons-pack/Icon.svelte';
+    import AiOutlineArrowDown from 'svelte-icons-pack/ai/AiOutlineArrowDown.js';
+    import AiOutlineArrowUp from 'svelte-icons-pack/ai/AiOutlineArrowUp.js';
 
     export let className = "importanceColumn";
     export let row;
@@ -17,9 +20,14 @@
 </script>
 
 <Column {className}>
-    <div>
-        <span class="TicketId">{row["code"]}</span>
-        <span class="placeholder">placeholder for answers</span>
+    <span class="TicketId">{row["code"]}</span>
+    <div class="Communication incomingMessages">
+        <Icon src="{AiOutlineArrowDown}"/>
+        <span>{row["messagegroupsIn"]}</span>
+    </div>
+    <div class="Communication outgoingMessages">
+        <Icon src="{AiOutlineArrowUp}"/>
+        <span>{row["messagegroupsOut"]}</span>
     </div>
     <div>
         <span>{CREATED}: </span>
@@ -31,7 +39,7 @@
 </Column>
 
 <style>
-    .placeholder {
-        color: #999;
+    .Communication {
+        display: inline-block;
     }
 </style>
