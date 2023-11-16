@@ -1,7 +1,7 @@
 <script>
     export let text;
-    export let className;
-    export let style;
+    export let className = "";
+    export let style = "";
 </script>
 
 <div class="Tag {className}" style={style}>
@@ -17,6 +17,8 @@
         font-weight: bold;
         line-height: 20px;
         padding: 2px 6px;
-        border-radius: 4px;
+        margin-right: 6px;
+        margin-top: 2px;
+        border-radius: 69px;
     }
 </style>

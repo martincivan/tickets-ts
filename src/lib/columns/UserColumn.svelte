@@ -29,15 +29,6 @@
     if (r + g + b > 400) {
         r = 0;
     }
-
-    let iconCompany = {
-        color: "#606060",
-        src: FaBuilding
-    };
-    let iconNoCompany = {
-        color: "#606060",
-        src: FaTimes
-    };
     let company = row["company"] === "Y" ? "Company" : "No Company";
 </script>
 
@@ -48,7 +39,7 @@
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
-        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} icon={company === "Company" ? iconCompany : iconNoCompany} />
+        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} icon={company === "Company" ? FaBuilding : FaTimes} />
     </div>
 </Column>
 

@@ -1,27 +1,25 @@
 <script>
     import Tags from "../tags/Tags.svelte";
     import AiFillFolder from "svelte-icons-pack/ai/AiFillFolder.js";
-    import Icon from 'svelte-icons-pack/Icon.svelte';
-    import StatusLabel from "../tags/StatusTag.svelte";
+    import StatusTag from "../tags/StatusTag.svelte";
     import Column from "./Column.svelte";
+    import CombinedTag from "../tags/CombinedTag.svelte";
+    import IconTag from "../tags/IconTag.svelte";
 
     export let row;
     export let className = "statusColumn"
+    console.log(row.agentname);
 </script>
 
 <Column {className}>
     <h1 class="subject">{row["subject"]}</h1>
     <p class="preview">{row["preview"]}</p>
     <div class="additional">
-        <StatusLabel status={row["status"]} />
-        <span class="department">
-            <Icon src={AiFillFolder}></Icon>
-            {row["departmentname"]}
-        </span>
-        {#if row["agentname"]}
-            <span class="agent">
-                {row["agentname"]}
-            </span>
+        <StatusTag status={row["status"]} />
+        {#if row.agentname.trim() !== ""}
+            <CombinedTag agentName={row.agentname} icon={AiFillFolder} iconText={row.departmentname} />
+        {:else}
+            <IconTag text={row.departmentname} icon={AiFillFolder}/>
         {/if}
         <Tags tags={row["tags"]} />
     </div>

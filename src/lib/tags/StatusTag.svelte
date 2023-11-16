@@ -31,14 +31,11 @@
     }
 
     export let style = `color: ${texts[status] ? texts[status].color : 'defaultColor'}; background-color: rgba(${texts[status] ? hexToRgb(texts[status].color) : 'defaultRgb'}, .2)`;
-    export let icon = {
-        color: texts[status] ? texts[status].color : 'defaultColor',
-        src: texts[status] ? texts[status].icon : null
-    }
+
 
 </script>
 
-<IconTag className={status["text"]} {style} text={texts[status].text} {icon} />
+<IconTag className={status["text"]} {style} text={texts[status].text} icon={texts[status] ? texts[status].icon : null} />
 
 <style>
     div {
