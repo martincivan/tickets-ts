@@ -4,12 +4,13 @@
     export let data;
     export let format;
     export let styles;
+    export let relative = false;
 
 </script>
 
 <div class={styles}>
     {#if data instanceof Date && !isNaN(data.getTime())}
-        <Time timestamp={data} format={format}/>
+        <Time timestamp={data} format={format} {relative}/>
     {:else}
         <span class="invalid">Invalid data</span>
     {/if}

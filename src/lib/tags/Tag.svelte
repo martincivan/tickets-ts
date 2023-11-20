@@ -12,6 +12,7 @@
 <style>
     .Tag {
         display: inline-block;
+        color: #646C75;
         text-align: center;
         font-size: 12px;
         font-weight: bold;
@@ -20,5 +21,10 @@
         margin-right: 6px;
         margin-top: 2px;
         border-radius: 69px;
+    }
+
+    .SLA {
+        border: 1px solid #CFD6DD;
+        border-radius: 4px;
     }
 </style>

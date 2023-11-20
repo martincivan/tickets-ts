@@ -5,6 +5,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineArrowDown from 'svelte-icons-pack/ai/AiOutlineArrowDown.js';
     import AiOutlineArrowUp from 'svelte-icons-pack/ai/AiOutlineArrowUp.js';
+    import Tag from "../tags/Tag.svelte";
 
     export let className = "importanceColumn";
     export let row;
@@ -29,17 +30,36 @@
         <Icon src="{AiOutlineArrowUp}"/>
         <span>{row["messagegroupsOut"]}</span>
     </div>
-    <div>
+    <div class="Created">
         <span>{CREATED}: </span>
         <DateDisplay data={row["datecreated"]} {format} styles=""/>
     </div>
-    <div>
-        <DateDisplay data={row["datedue"]} format="" styles=""/>
-    </div>
+    {#if row.datedue instanceof Date && !isNaN(row.datedue)}
+        <DateDisplay data={row["datedue"]} relative={true} format="" styles=""/>
+    {:else}
+        <Tag text="No SLA" className="SLA"/>
+    {/if}
 </Column>
 
 <style>
+    .TicketId {
+        font-weight: bold;
+        font-size: 13px;
+        line-height: 20px;
+        margin-right: 14px;
+    }
+
+    .Created {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
     .Communication {
-        display: inline-block;
+        font-size: 13px;
+        line-height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
     }
 </style>

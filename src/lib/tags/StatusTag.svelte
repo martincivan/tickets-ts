@@ -18,34 +18,21 @@
 
     export let status;
     const texts = {
-        "A": {"text": $t("Answered"), "icon": TiArrowBack, "color": "#708090"},
-        "T": {"text": $t("Chatting"), "icon": BsChatLeft, "color": "#2196f3"},
+        "A": {"text": $t("Answered"), "icon": TiArrowBack, "color": "#CFD6DD"},
+        "T": {"text": $t("Chatting"), "icon": BsChatLeft, "color": "#2CA34D"},
         "P": {"text": $t("Calling"), "icon": TiArrowBack, "color": "#999"},
-        "X": {"text": $t("Deleted"), "icon": IoTrash, "color": "#aac"},
-        "B": {"text": $t("Spam"), "icon": AiFillFire, "color": "#caa"},
+        "X": {"text": $t("Deleted"), "icon": IoTrash, "color": "#646C75"},
+        "B": {"text": $t("Spam"), "icon": AiFillFire, "color": "#646C75"},
         "I": {"text": $t("Init"), "icon": TiArrowBack, "color": "#424242"},
-        "R": {"text": $t("Resolved"), "icon": TiTick, "color": "#aca"},
-        "N": {"text": $t("New"), "icon": IoSunnySharp, "color": "#ff6c00"},
-        "C": {"text": $t("Open"), "icon": FaSolidEnvelopeOpenText, "color": "#ffa700"},
-        "W": {"text": $t("Postponed"), "icon": CgAlarm, "color": "#673ab7"},
+        "R": {"text": $t("Resolved"), "icon": TiTick, "color": "#CFD6DD"},
+        "N": {"text": $t("New"), "icon": IoSunnySharp, "color": "#FF7A24"},
+        "C": {"text": $t("Open"), "icon": FaSolidEnvelopeOpenText, "color": "#FFA700"},
+        "W": {"text": $t("Postponed"), "icon": CgAlarm, "color": "#814FDE"},
     }
 
-    export let style = `color: ${texts[status] ? texts[status].color : 'defaultColor'}; background-color: rgba(${texts[status] ? hexToRgb(texts[status].color) : 'defaultRgb'}, .2)`;
+    export let style = `background-color: ${texts[status] ? texts[status].color : 'defaultColor'}; color: white;`;
 
 
 </script>
 
 <IconTag className={status["text"]} {style} text={texts[status].text} icon={texts[status] ? texts[status].icon : null} />
-
-<style>
-    div {
-        margin: 5px;
-        padding: 1px 10px;
-        border-radius: 4px;
-        font-weight: 700;
-        text-transform: uppercase;
-        border: solid 1px;
-        width: fit-content;
-        height: 24px;
-    }
-</style>

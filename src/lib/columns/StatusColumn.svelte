@@ -17,9 +17,9 @@
     <div class="additional">
         <StatusTag status={row["status"]} />
         {#if row.agentname.trim() !== ""}
-            <CombinedTag agentName={row.agentname} icon={AiFillFolder} iconText={row.departmentname} />
+            <CombinedTag className="Department" agentName={row.agentname} icon={AiFillFolder} iconText={row.departmentname} />
         {:else}
-            <IconTag text={row.departmentname} icon={AiFillFolder}/>
+            <IconTag className="Department" text={row.departmentname} icon={AiFillFolder}/>
         {/if}
         <Tags tags={row["tags"]} />
     </div>
@@ -27,8 +27,9 @@
 
 <style>
     .subject {
-        font-size: 20px;
+        font-size: 13px;
         font-weight: bold;
+        line-height: 20px;
         margin: 0;
     }
     .preview {
@@ -37,7 +38,8 @@
         white-space: nowrap;
         padding-right: 5px;
         margin: 0;
-        font-size: 20px;
+        line-height: 20px;
+        font-size: 13px;
     }
 
     .additional {

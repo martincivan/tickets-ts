@@ -14,11 +14,9 @@ $: name = $tagsMap[tagId]?.name ?? "";
 <Tag style="color: #{color}; background: #{backgroundcolor}" text={name} className="TicketTag"/>
 
 <style>
-    :global(.tag.TicketTag) {
+    :global(.Tag.TicketTag) {
         font-size: 12px;
         font-weight: bold;
-        border-radius: 25px;
         padding: 2px 10px;
-        margin: 5px;
     }
 </style>
