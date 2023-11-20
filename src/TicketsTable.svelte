@@ -17,6 +17,7 @@
     import StatusColumn from "./lib/columns/StatusColumn.svelte";
     import ImportanceColumn from "./lib/columns/ImportanceColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
+    import NoTickets from "./lib/NoTickets.svelte";
 
     let columns;
 
@@ -55,6 +56,7 @@
     setContext("api", api);
 
     const data = writable([])
+    const hasData = writable(false)
     setContext("data", data)
     const sort = writable(GetTicketsGridListSortFieldEnum.Rorder)
     const direction = writable(true)
@@ -95,6 +97,9 @@
                 $data = []
             }
             $data = $data.concat(value.rows)
+            if (value.rows.length > 0) {
+                hasData.set(true)
+            }
             $cursor = value.cursor
             loaded = true
         } catch (e) {
@@ -127,7 +132,11 @@
             <Icon size="20px" src={TiArrowSync}/>
         </button>
     </div>
-    <Table {columns} {data} {loadMore} {middleclickhandler} {selectedAll}/>
+    {#if !$hasData && !$loading}
+        <NoTickets />
+    {:else}
+        <Table {columns} {data} {loadMore} {middleclickhandler} {selectedAll}/>
+    {/if}
 </main>
 
 <style>

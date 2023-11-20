@@ -3,6 +3,7 @@
     export let columns;
     export let data;
     export let middleclickhandler;
+    export let selectedAll;
 
 </script>
 
