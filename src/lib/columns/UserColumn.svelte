@@ -1,7 +1,7 @@
 <script>
     import Avatar from "svelte-avatar";
     import md5 from "md5";
-    import {hashCode} from "../hash.js";
+    import {hashCode} from "../common/hash.js";
     import Column from "./Column.svelte";
     import IconTag from "../tags/IconTag.svelte";
     import FaBuilding from 'svelte-icons-pack/fa/FaBuilding.js';

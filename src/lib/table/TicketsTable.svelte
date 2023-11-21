@@ -1,9 +1,9 @@
 <script>
-    import Table from "./lib/Table.svelte";
+    import Table from "./Table.svelte";
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import {writable} from "svelte/store";
-    import {Column} from "./lib/columns/columns.js";
-    import {TagsLoader} from "./lib/tags/tags.js";
+    import {Column} from "../columns/columns.js";
+    import {TagsLoader} from "../tags/tags.js";
     import {setContext} from "svelte";
     import {
         Configuration,
@@ -11,13 +11,13 @@
         GetTicketsGridListSortFieldEnum,
         GridApi
     } from "@qualityunit/liveagent-api";
-    import Counter from "./lib/Counter.svelte";
+    import Counter from "../common/Counter.svelte";
     import {t} from 'svelte-intl-precompile'
-    import UserColumn from "./lib/columns/UserColumn.svelte";
-    import StatusColumn from "./lib/columns/StatusColumn.svelte";
-    import ImportanceColumn from "./lib/columns/ImportanceColumn.svelte";
+    import UserColumn from "../columns/UserColumn.svelte";
+    import StatusColumn from "../columns/StatusColumn.svelte";
+    import ImportanceColumn from "../columns/ImportanceColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
-    import NoTickets from "./lib/NoTickets.svelte";
+    import NoTickets from "./NoTickets.svelte";
 
     let columns;
 

@@ -1,5 +1,5 @@
 <script>
-    import TicketsTable from "./TicketsTable.svelte";
+    import TicketsTable from "./lib/table/TicketsTable.svelte";
 
     import {init, waitLocale} from 'svelte-intl-precompile';
     import {registerAll} from '$locales';
@@ -22,7 +22,6 @@
     export let selectedAll = false;
 
     function handleSelection(selection, sAll) {
-        console.log("selection", selection)
         selectionMap = selection;
         selectedAll = sAll;
         if (selectionhandler) {

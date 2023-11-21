@@ -3,13 +3,12 @@
     export let columns;
     export let data;
     export let middleclickhandler;
-    export let selectedAll;
 
 </script>
 
 <tbody>
 {#each $data as row, i}
-    <tr on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+    <tr class={$data[i].__selected ? "selected" : ""}  on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button === 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();

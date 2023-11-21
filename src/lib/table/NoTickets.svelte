@@ -1,6 +1,6 @@
 <script>
     import {t} from "svelte-intl-precompile";
-    import Button from "./Button.svelte";
+    import Button from "../common/Button.svelte";
     import FaFilter from "svelte-icons-pack/fa/FaSolidFilter.js";
     import FaSolidCog from "svelte-icons-pack/fa/FaSolidCog.js";
 </script>

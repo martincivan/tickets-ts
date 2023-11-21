@@ -1,6 +1,6 @@
 <script>
     import Column from "./Column.svelte";
-    import DateDisplay from "../DateDisplay.svelte";
+    import DateDisplay from "../common/DateDisplay.svelte";
     import {t} from 'svelte-intl-precompile'
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineArrowDown from 'svelte-icons-pack/ai/AiOutlineArrowDown.js';

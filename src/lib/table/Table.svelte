@@ -2,7 +2,7 @@
     import {onMount} from 'svelte';
     import THead from "./THead.svelte";
     import TBody from "./TBody.svelte";
-    import LoadMore from "./LoadMore.svelte";
+    import LoadMore from "../common/LoadMore.svelte";
 
     export let data;
     export let columns;
@@ -32,8 +32,8 @@
 <div class="container" bind:this={container}>
     <table>
         <THead {columns} {data} {selectedAll}/>
-        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
-        <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
+        <TBody columns={$columns} {data} {middleclickhandler}>
+        <td class="load" colspan="{$columns.reduce((p, c) => p + c.visible, 1)}">
             <div bind:this={loadRow} class="load" on:click={loadMore}>
                 <LoadMore/>
             </div>
