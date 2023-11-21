@@ -1,5 +1,4 @@
 <script>
-
     export let columns;
     export let data;
     export let middleclickhandler;
@@ -8,16 +7,24 @@
 
 <tbody>
 {#each $data as row, i}
-    <tr class={$data[i].__selected ? "selected" : ""}  on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+    <colgroup>
+        <col style="width: 10%">
+        <col style="width: 20%">
+        <col style="width: 50%">
+        <col style="width: 20%">
+    </colgroup>
+    <tr class={$data[i].__selected ? "Row Selected" : "Row"} on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button === 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
         }
     }}>
-        <td class="Checkbox">
-            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
-                   on:click|stopPropagation={() => {}}>
+        <td>
+            <div class="Checkbox">
+                <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
+                       on:click|stopPropagation={() => {}}>
+            </div>
         </td>
         {#each columns as column}
             <td>
@@ -31,7 +38,26 @@
 
 <style>
     .Checkbox {
-        border-left: 5px solid pink
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        width: 30px;
+        position: relative;
+        margin-left: 20px;
+    }
+
+    .Checkbox::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 0;
+        transform: translate(-50%, -50%);
+        width: 5px;
+        height: 80%;
+        border-radius: 69px;
+        border: 1px solid pink;
+        background: pink;
     }
 
     tr {
@@ -41,12 +67,16 @@
     }
 
     tr:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(127, 144, 164, 0.15);
     }
 
     td {
         padding-bottom: 5px;
         padding-top: 5px;
+    }
+
+    .Selected {
+        background-color: #DCF3FE !important;
     }
 
     @media screen and (max-width: 768px) {

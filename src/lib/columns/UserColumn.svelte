@@ -59,16 +59,21 @@
 
 
     .avatar {
-        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
     }
 
     .name {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: bold;
     }
 
     .email {
-        font-size: 12px;
-        color: #606060;
+        font-size: 13px;
+        line-height: 20px;
     }
 
     .texts {
