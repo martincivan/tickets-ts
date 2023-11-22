@@ -2,15 +2,15 @@
     import Time from "svelte-time";
 
     export let data;
-    export let format;
-    export let styles;
+    export let format = "";
+    export let style = "";
     export let relative = false;
 
 </script>
 
-<div class={styles}>
+<div class="Date">
     {#if data instanceof Date && !isNaN(data.getTime())}
-        <Time timestamp={data} format={format} {relative}/>
+        <Time {style} timestamp={data} {format} {relative}/>
     {:else}
         <span class="invalid">Invalid data</span>
     {/if}

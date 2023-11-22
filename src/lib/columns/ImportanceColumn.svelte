@@ -6,6 +6,7 @@
     import AiOutlineArrowDown from 'svelte-icons-pack/ai/AiOutlineArrowDown.js';
     import AiOutlineArrowUp from 'svelte-icons-pack/ai/AiOutlineArrowUp.js';
     import Tag from "../tags/Tag.svelte";
+    import SLATag from "../tags/SLATag.svelte";
 
     export let className = "importanceColumn";
     export let row;
@@ -32,10 +33,10 @@
     </div>
     <div class="Created">
         <span>{CREATED}: </span>
-        <DateDisplay data={row["datecreated"]} {format} styles=""/>
+        <DateDisplay data={row["datecreated"]} {format} />
     </div>
     {#if row.datedue instanceof Date && !isNaN(row.datedue)}
-        <DateDisplay data={row["datedue"]} relative={true} format="" styles=""/>
+        <SLATag tagText="First answer" due={row.datedue} />
     {:else}
         <Tag text="No SLA" className="SLA"/>
     {/if}
