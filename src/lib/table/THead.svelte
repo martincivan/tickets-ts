@@ -36,44 +36,38 @@
 
 </script>
 
-<thead>
-    <tr>
-        <th class="headCheckbox">
-            <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
-        </th>
-        {#each $columns as column, index (column)}
-            <th
-                class:sortable={column.sortable}
-                class:sorted={$sort === column.sortable}
-                class:reversed={$sort === column.sortable && !$direction}
-                on:click={() => toggleSort(column)}
-            >
-                <div class="content">
-                    {#if column.sortable}
-                        {#if $sort === column.sortable}
-                            {#if $direction}
-                                <Icon  src="{TiArrowSortedUp}"></Icon>
-                            {:else}
-                                <Icon  src="{TiArrowSortedDown}"></Icon>
-                            {/if}
+<div class="Head">
+    <div class="headCheckbox">
+        <input bind:checked={$selectedAll} on:click={toggleAll} type="checkbox">
+    </div>
+    {#each $columns as column (column)}
+        <button
+            class:sortable={column.sortable}
+            class:sorted={$sort === column.sortable}
+            class:reversed={$sort === column.sortable && !$direction}
+            on:click={() => toggleSort(column)}
+        >
+            <div class="content">
+                {#if column.sortable}
+                    {#if $sort === column.sortable}
+                        {#if $direction}
+                            <Icon  src="{TiArrowSortedUp}"></Icon>
                         {:else}
-                            <Icon  src="{TiArrowUnsorted}"></Icon>
+                            <Icon  src="{TiArrowSortedDown}"></Icon>
                         {/if}
+                    {:else}
+                        <Icon  src="{TiArrowUnsorted}"></Icon>
                     {/if}
-                    {column.name}
-                </div>
-            </th>
-        {/each}
-    </tr>
-</thead>
+                {/if}
+                {column.name}
+            </div>
+        </button>
+    {/each}
+</div>
 
 <style>
-    thead {
-        position: sticky;
-        top: 0;
-        color: #606060;
-        font-size: 14px;
-        font-family: 'Roboto', sans-serif;
+    .Head {
+        display: none;
     }
 
     .headCheckbox {
@@ -87,9 +81,29 @@
         text-align: left;
     }
 
-    @media screen and (max-width: 768px) {
-        thead {
-            display: none;
+    button {
+        border: none;
+        background: none;
+        font-size: 13px;
+        font-weight: 400;
+        color: #646C75;
+    }
+
+    @media screen and (min-width: 768px) {
+        .Head {
+            display: grid;
+            grid-template-columns: 60px 1fr 3fr 1fr;
+            position: sticky;
+            top: 0;
+            color: #606060;
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+        }
+    }
+
+    @media (min-width: 1300px) {
+        .Head {
+            grid-template-columns: 60px 260px auto 230px;
         }
     }
 

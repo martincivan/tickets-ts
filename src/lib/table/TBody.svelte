@@ -5,74 +5,76 @@
     export let middleclickhandler;
 </script>
 
-<tbody>
+<div class="Body">
 {#each $data as row, i}
-    <tr class={$data[i].__selected ? "Row Selected" : "Row"} on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
+    <div class="Row {$data[i].__selected ? 'Selected' : ''}" on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button === 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
             event.preventDefault();
             event.stopPropagation();
         }
     }}>
-        <td style="position: relative">
-            <div class="Status" style="background-color: {getStatusColor(row.status)}" ></div>
+        <div class="Checkbox" style="position: relative">
+            <div class="StatusBar" style="background-color: {getStatusColor(row.status)}" ></div>
             <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
                    on:click|stopPropagation={() => {}}>
-        </td>
+        </div>
         {#each columns as column}
-            <td>
-                <svelte:component this={column.renderer} {column} {row}></svelte:component>
-            </td>
+            <svelte:component this={column.renderer} {column} {row}></svelte:component>
         {/each}
-    </tr>
+    </div>
 {/each}
 <slot/>
-</tbody>
+</div>
 
 <style>
-    .Status {
+    .Checkbox {
+        position: relative;
+    }
+
+    .StatusBar {
         position: absolute;
         left: 0;
         top: 10%;
         content: "";
         width: 6px;
         height: 80%;
-        margin-left: 20px;
+        margin-left: 8px;
         border-radius: 69px;
     }
 
-    tr {
-        height: 80px;
+    input {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+
+    .Row {
+        display: flex;
+        flex-direction: column;
         border-radius: 12px;
         box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
     }
 
-    tr:hover {
+    .Row:hover {
         background-color: rgba(127, 144, 164, 0.15);
     }
 
-    td {
-        padding-bottom: 5px;
-        padding-top: 5px;
-    }
-
-    .Selected {
+    .Row.Selected {
         background-color: #DCF3FE !important;
     }
 
-    @media screen and (max-width: 768px) {
-        tr {
-            display: block;
-            height: initial;
+    @media (min-width: 826px) and (max-width: 1649px) {
+        .Row {
+            grid-template-columns: 60px 175px auto 190px;
         }
+    }
 
-        td {
-            display: none;
-        }
-
-        td:nth-child(-n+4) {
-            display: block;
-            margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+        .Row {
+            display: grid;
+            grid-template-columns: 60px 260px auto 230px;
+            height: 80px;
         }
     }
 </style>

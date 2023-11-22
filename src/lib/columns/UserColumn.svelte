@@ -44,7 +44,7 @@
 </Column>
 
 <style>
-    :global(.column.userColumn) {
+    :global(.Column.userColumn) {
         display: flex;
     }
 

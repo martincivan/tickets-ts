@@ -30,29 +30,19 @@
 </script>
 
 <div class="container" bind:this={container}>
-    <table>
-        <THead {columns} {data} {selectedAll}/>
-        <TBody columns={$columns} {data} {middleclickhandler}>
-        <td class="load" colspan="{$columns.reduce((p, c) => p + c.visible, 1)}">
-            <div bind:this={loadRow} class="load" on:click={loadMore}>
-                <LoadMore/>
-            </div>
-        </td>
-        </TBody>
-    </table>
+    <THead {columns} {data} {selectedAll}/>
+    <TBody columns={$columns} {data} {middleclickhandler}>
+    <div class="load">
+        <div bind:this={loadRow} class="load" on:click={loadMore}>
+            <LoadMore/>
+        </div>
+    </div>
+    </TBody>
 </div>
 
 <style>
     .load {
         width: 100%;
-    }
-
-    table {
-        max-height: 100%;
-        width: 100%;
-        border-spacing: 4px 5px;
-        border: none;
-        table-layout: fixed;
     }
 
     .container {
@@ -61,13 +51,11 @@
         flex-basis: 0;
         overflow-y: scroll;
         overflow-x: hidden;
+        border-spacing: 4px 5px;
+        border: none;
     }
 
     @media screen and (max-width: 768px) {
-        table {
-            display: block;
-        }
-
         .load {
             display: block;
         }
