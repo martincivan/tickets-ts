@@ -1,18 +1,12 @@
 <script>
+    import getStatusColor from "../common/getStatusColor.js";
     export let columns;
     export let data;
     export let middleclickhandler;
-
 </script>
 
 <tbody>
 {#each $data as row, i}
-    <colgroup>
-        <col style="width: 10%">
-        <col style="width: 20%">
-        <col style="width: 50%">
-        <col style="width: 20%">
-    </colgroup>
     <tr class={$data[i].__selected ? "Row Selected" : "Row"} on:click={() => location.assign("#Conversation;id=" + row.conversationid)} on:mousedown={(event) => {
         if (event.button === 1 && middleclickhandler) {
             middleclickhandler(row.conversationid);
@@ -20,11 +14,10 @@
             event.stopPropagation();
         }
     }}>
-        <td>
-            <div class="Checkbox">
-                <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
-                       on:click|stopPropagation={() => {}}>
-            </div>
+        <td style="position: relative">
+            <div class="Status" style="background-color: {getStatusColor(row.status)}" ></div>
+            <input type="checkbox" value={row.conversationid} bind:checked={$data[i].__selected}
+                   on:click|stopPropagation={() => {}}>
         </td>
         {#each columns as column}
             <td>
@@ -37,27 +30,15 @@
 </tbody>
 
 <style>
-    .Checkbox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80px;
-        width: 30px;
-        position: relative;
-        margin-left: 20px;
-    }
-
-    .Checkbox::before {
-        content: "";
+    .Status {
         position: absolute;
-        top: 40px;
         left: 0;
-        transform: translate(-50%, -50%);
-        width: 5px;
+        top: 10%;
+        content: "";
+        width: 6px;
         height: 80%;
+        margin-left: 20px;
         border-radius: 69px;
-        border: 1px solid pink;
-        background: pink;
     }
 
     tr {
