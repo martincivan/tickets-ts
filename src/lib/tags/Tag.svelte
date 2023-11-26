@@ -12,7 +12,7 @@
 <style>
     .Tag {
         display: inline-block;
-        color: #646C75;
+        color: var(--department-bg-color);
         text-align: center;
         font-size: 12px;
         font-weight: bold;

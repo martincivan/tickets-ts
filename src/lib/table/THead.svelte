@@ -86,7 +86,7 @@
         background: none;
         font-size: 13px;
         font-weight: 400;
-        color: #646C75;
+        color: var(--department-bg-color);
     }
 
     @media screen and (min-width: 768px) {

@@ -1,8 +1,7 @@
 <script>
     import {t} from "svelte-intl-precompile";
     import Button from "../common/Button.svelte";
-    import FaFilter from "svelte-icons-pack/fa/FaSolidFilter.js";
-    import FaSolidCog from "svelte-icons-pack/fa/FaSolidCog.js";
+    import Icon from "../common/Icon.svelte";
 </script>
 
 <div class="NoTickets">
@@ -10,8 +9,14 @@
     <h1>{$t("No tickets found")}</h1>
     <p>{$t("There is no tickets to be displayed. Change filter or place chat widget on your website to reach customers.")}</p>
     <div class="Buttons">
-        <Button icon={FaFilter} text={$t("Change filter")} />
-        <Button icon={FaSolidCog} text={$t("Configure chat button")} />
+        <Button className="Filter">
+            <Icon className="FilterIcon" iconVariable="var(--tune-icon)"/>
+            {$t("Change filter")}
+        </Button>
+        <Button className="Configure">
+            <Icon className="ConfigureIcon" iconVariable="var(--configuration-icon)"/>
+            {$t("Configure chat button")}
+        </Button>
     </div>
 </div>
 

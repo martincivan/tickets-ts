@@ -1,24 +1,17 @@
 <script>
-    import Icon from 'svelte-icons-pack/Icon.svelte';
     import Tag from "./Tag.svelte";
+    import Icon from "../common/Icon.svelte";
 
     export let text;
     export let className = "";
     export let style = "";
-    export let icon;
+    export let iconVariable;
 
-    let color = "white";
     let classes = `IconTag ${className}`;
-
-    if (className === "CompanyTag" || className === "NoCompanyTag") {
-        color = "#646C75";
-    }
 </script>
 
 <Tag {text} className={classes} {style}>
-    {#if icon !== undefined}
-        <Icon className="icon" color={color} src={icon} size="16px"></Icon>
-    {/if}
+    <Icon {iconVariable}/>
 </Tag>
 
 <style>
@@ -31,7 +24,7 @@
     }
 
     :global(div.Tag.IconTag.Department) {
-        background-color:  #646C75;
+        background-color:  var(--department-bg-color);
         color: white;
     }
 </style>

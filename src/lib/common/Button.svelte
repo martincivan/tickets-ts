@@ -1,19 +1,14 @@
 <script>
-    import Icon from 'svelte-icons-pack/Icon.svelte';
     export let onAction = () => {};
-    export let text = "";
-    export let icon = null;
+    export let className = "";
 
     function handleClick() {
         onAction();
     }
 </script>
 
-<button on:click={handleClick}>
-    {#if icon}
-        <Icon src={icon} />
-    {/if}
-    {text}
+<button on:click={handleClick} class={className}>
+    <slot />
 </button>
 
 <style>

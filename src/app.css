@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "la-icon-font";
+    src: url(var(--la-icon-font-eot));
+    src: url(var(--la-icon-font-eot-iefix)) format("embedded-opentype"),
+    url(var(--la-icon-font-woff2)) format("woff2"),
+    url(var(--la-icon-font-woff)) format("woff"),
+    url(var(--la-icon-font-ttf)) format("truetype"),
+    url(var(--la-icon-font-svg)) format("svg");
+}

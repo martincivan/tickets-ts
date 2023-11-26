@@ -4,8 +4,6 @@
     import {hashCode} from "../common/hash.js";
     import Column from "./Column.svelte";
     import IconTag from "../tags/IconTag.svelte";
-    import FaBuilding from 'svelte-icons-pack/fa/FaBuilding.js';
-    import FaTimes from 'svelte-icons-pack/fa/FaTimesCircle.js';
 
     export let row;
     export let className = "userColumn";
@@ -39,7 +37,7 @@
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
-        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} icon={company === "Company" ? FaBuilding : FaTimes} />
+        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} iconVariable="var(--companies-icon)" />
     </div>
 </Column>
 
@@ -50,10 +48,12 @@
 
     :global(.Tag.CompanyTag) {
         background-color: #E5E8EC;
+        color: var(--department-bg-color);
     }
 
     :global(.Tag.NoCompanyTag) {
         background-color: white;
+        color: var(--department-bg-color);
         border: 1px solid #E5E8EC;
     }
 

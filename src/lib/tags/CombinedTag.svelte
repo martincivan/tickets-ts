@@ -1,16 +1,16 @@
 <script>
     import IconTag from "./IconTag.svelte";
     import Tag from "./Tag.svelte";
-    import Icon from 'svelte-icons-pack/Icon.svelte';
+    import Icon from "../common/Icon.svelte";
     export let iconText = "";
     export let tagText;
-    export let icon;
+    export let iconVariable;
     export let className;
 
     let iconTagStyles = '';
     let tagStyles = '';
     if (className === "Department") {
-        iconTagStyles = `color: white; background-color: #646C75; margin-top: 0;`;
+        iconTagStyles = `color: white; background-color: var(--department-bg-color); margin-top: 0;`;
         tagStyles = `color: white; background-color: black; border-radius: 4px; margin: 0`;
     } else if (className.includes("SLATag")) {
         console.log("SLATag");
@@ -26,10 +26,10 @@
 
 <div class={classNames}>
     {#if iconText !== ""}
-        <IconTag style={iconTagStyles} text={iconText} {icon} className="Combined"/>
+        <IconTag style={iconTagStyles} text={iconText} {iconVariable} className="Combined" />
     {:else}
         <div class="IconWrapper">
-            <Icon className="icon" color="white" src={icon} size="16px"></Icon>
+            <Icon {iconVariable} />
         </div>
         <slot />
     {/if}
@@ -54,7 +54,7 @@
 
     .Department {
         display: flex;
-        background-color: #646C75;
+        background-color: var(--department-bg-color);
     }
 
     .Pending {

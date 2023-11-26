@@ -28,8 +28,19 @@
 </div>
 
 <style>
-    .Checkbox {
-        position: relative;
+    .Row {
+        display: grid;
+        grid-template-columns: 1fr;
+        border-radius: 12px;
+        box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
+    }
+
+    .Row:hover {
+        background-color: var(--department-bg-color);
+    }
+
+    .Row.Selected {
+        background-color: #DCF3FE !important;
     }
 
     .StatusBar {
@@ -49,32 +60,21 @@
         left: 40%;
     }
 
-    .Row {
-        display: flex;
-        flex-direction: column;
-        border-radius: 12px;
-        box-shadow: 0 0 5px 2px rgb(0 0 0 / 0.2);
-    }
-
-    .Row:hover {
-        background-color: rgba(127, 144, 164, 0.15);
-    }
-
-    .Row.Selected {
-        background-color: #DCF3FE !important;
-    }
-
-    @media (min-width: 826px) and (max-width: 1649px) {
-        .Row {
-            grid-template-columns: 60px 175px auto 190px;
-        }
-    }
-
     @media screen and (min-width: 768px) {
         .Row {
             display: grid;
-            grid-template-columns: 60px 260px auto 230px;
+            grid-template-columns: 60px 1fr 3fr 1fr;
             height: 80px;
+        }
+
+        .Checkbox {
+            position: relative;
+        }
+    }
+
+    @media (min-width: 1300px) {
+        .Row {
+            grid-template-columns: 60px 260px auto 230px;
         }
     }
 </style>

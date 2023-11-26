@@ -46,9 +46,10 @@
     }
 
     .container {
-        width: 100%;
+        width: calc(100% - 16px);
         flex-grow: 1;
         flex-basis: 0;
+        padding: 8px;
         overflow-y: scroll;
         overflow-x: hidden;
         border-spacing: 4px 5px;
