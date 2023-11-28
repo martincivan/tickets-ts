@@ -16,9 +16,9 @@
     <div class="additional">
         <StatusTag status={row["status"]} />
         {#if row.agentname.trim() !== ""}
-            <CombinedTag className="Department" tagText={row.agentname} iconVariable="var(--department-icon)" iconText={row.departmentname} />
+            <CombinedTag className="Department" tagText={row.agentname} iconVariable="la-department" iconText={row.departmentname} />
         {:else}
-            <IconTag className="Department" text={row.departmentname} iconVariable="var(--department-icon)"/>
+            <IconTag className="Department" text={row.departmentname} iconVariable=".la-department"/>
         {/if}
         <Tags tags={row["tags"]} />
     </div>

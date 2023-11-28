@@ -16,11 +16,11 @@
 <Column {className}>
     <span class="TicketId">{row["code"]}</span>
     <div class="Communication incomingMessages">
-        <Icon iconVariable="var(--incoming-icon)" />
+        <Icon iconVariable="la-incoming" />
         <span>{row["messagegroupsIn"]}</span>
     </div>
     <div class="Communication outgoingMessages">
-        <Icon iconVariable="var(--outgoing-icon)"/>
+        <Icon iconVariable="la-outgoing"/>
         <span>{row["messagegroupsOut"]}</span>
     </div>
     <div class="Created">

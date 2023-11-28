@@ -37,7 +37,7 @@
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
-        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} iconVariable="var(--companies-icon)" />
+        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} iconVariable="la-companies" />
     </div>
 </Column>
 

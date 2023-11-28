@@ -23,6 +23,10 @@
         border-radius: 69px;
     }
 
+    .Tag:before {
+        font-family: "la-icon-font";
+    }
+
     .SLA {
         border: 1px solid #CFD6DD;
         border-radius: 4px;

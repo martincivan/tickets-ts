@@ -1,7 +1,5 @@
 <script>
     import CombinedTag from "./CombinedTag.svelte";
-    import FaAlarmClock from 'svelte-icons-pack/fa/FaClock.js';
-    import FaExclamation from 'svelte-icons-pack/bi/BiAlarmExclamation.js';
     import DateDisplay from "../common/DateDisplay.svelte";
 
     export let tagText;
@@ -9,13 +7,14 @@
 
     let className;
 
+    //TODO - fix SLA icons
     const getStyle = (due) => {
         if (due > new Date()) {
             className = "SLATag Pending";
-            return FaAlarmClock;
+            return "la-sla";
         } else {
             className = "SLATag Overdue";
-            return FaExclamation;
+            return "la-sla-compliance";
         }
     };
 
@@ -23,6 +22,6 @@
 
 </script>
 
-<CombinedTag {icon} {tagText} {className}>
+<CombinedTag iconVariable={icon} {tagText} {className}>
     <DateDisplay style="color: white; font-size: 12px; font-weight: bold; margin-right: 5px" data={due} relative={true} />
 </CombinedTag>

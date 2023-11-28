@@ -3,10 +3,10 @@
     export let iconVariable;
 </script>
 
-<span class={`Icon ${className}`} style="--icon-content: {iconVariable};"></span>
+<span class={`Icon ${className} ${iconVariable}`} ></span>
 
 <style>
-    .Icon {
+    .Icon:before {
         font-family: 'la-icon-font';
         display: inline-block;
         font-style: normal;
@@ -15,9 +15,5 @@
         text-transform: none;
         line-height: 1;
         font-size: 1em;
-    }
-
-    .Icon::before {
-        content: var(--icon-content);
     }
 </style>

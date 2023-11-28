@@ -10,11 +10,11 @@
     <p>{$t("There is no tickets to be displayed. Change filter or place chat widget on your website to reach customers.")}</p>
     <div class="Buttons">
         <Button className="Filter">
-            <Icon className="FilterIcon" iconVariable="var(--tune-icon)"/>
+            <Icon className="FilterIcon" iconVariable="la-tune"/>
             {$t("Change filter")}
         </Button>
         <Button className="Configure">
-            <Icon className="ConfigureIcon" iconVariable="var(--configuration-icon)"/>
+            <Icon className="ConfigureIcon" iconVariable="la-configuration"/>
             {$t("Configure chat button")}
         </Button>
     </div>

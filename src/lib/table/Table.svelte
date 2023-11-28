@@ -42,7 +42,7 @@
 
 <style>
     .load {
-        width: 100%;
+        display: block;
     }
 
     .container {
@@ -56,9 +56,9 @@
         border: none;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width: 768px) {
         .load {
-            display: block;
+            width: 100%;
         }
     }
 </style>

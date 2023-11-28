@@ -7,6 +7,7 @@
     registerAll();
 
     export let lang = 'sk';
+    export let font_mapping_path;
 
     init({
         initialLocale: lang,
@@ -39,3 +40,5 @@
         </slot>
     </TicketsTable>
 {/if}
+
+<link rel="stylesheet" href={font_mapping_path}>
