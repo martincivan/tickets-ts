@@ -47,14 +47,14 @@
     }
 
     :global(.Tag.CompanyTag) {
-        background-color: #E5E8EC;
-        color: var(--department-bg-color);
+        background-color: var(--department-bg-color);
+        color: var(--main-textcolor);
     }
 
     :global(.Tag.NoCompanyTag) {
         background-color: white;
-        color: var(--department-bg-color);
-        border: 1px solid #E5E8EC;
+        color: var(--main-lighter-textcolor);
+        border: 1px solid var(--main-lighter-textcolor);
     }
 
 

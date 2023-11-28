@@ -19,7 +19,7 @@
 
 <style>
     .invalid {
-        color: #999;
+        color: var(--panel_text_color);
     }
 
     div {

@@ -36,11 +36,11 @@
     }
 
     .Row:hover {
-        background-color: var(--department-bg-color);
+        background-color: var(--menu-hover-bg);
     }
 
     .Row.Selected {
-        background-color: #DCF3FE !important;
+        background-color: var(--menu-selected-bg) !important;
     }
 
     .StatusBar {

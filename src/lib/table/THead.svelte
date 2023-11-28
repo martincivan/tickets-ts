@@ -95,7 +95,7 @@
             grid-template-columns: 60px 1fr 3fr 1fr;
             position: sticky;
             top: 0;
-            color: #606060;
+            color: var(--panel_text_color);
             font-size: 14px;
             font-family: 'Roboto', sans-serif;
         }

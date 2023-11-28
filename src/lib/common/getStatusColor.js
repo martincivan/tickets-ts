@@ -1,25 +1,25 @@
 function getColor(status) {
     switch (status) {
         case "A":
-            return "#CFD6DD";
+            return "var(--ticket-status-answered-background)";
         case "T":
-            return "#2CA34D";
+            return "var(--ticket-status-chat-background)";
         case "P":
-            return "#999";
+            return "var(--ticket-status-phone-background)";
         case "X":
-            return "#646C75";
+            return "var(--ticket-status-deleted-background)";
         case "B":
-            return "#646C75";
+            return "";
         case "I":
-            return "#424242";
+            return "var(--ticket-status-deleted-background)";
         case "R":
-            return "#CFD6DD";
+            return "var(--ticket-status-resolved-background)";
         case "N":
-            return "#FF7A24";
+            return "var(--ticket-status-new-background)";
         case "C":
-            return "#FFA700";
+            return "var(--ticket-status-open-background)";
         case "W":
-            return "#814FDE";
+            return "var(--ticket-status-postponed-background)";
     }
 }
 

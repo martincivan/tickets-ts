@@ -13,11 +13,10 @@
         iconTagStyles = `color: white; background-color: var(--department-bg-color); margin-top: 0;`;
         tagStyles = `color: white; background-color: black; border-radius: 4px; margin: 0`;
     } else if (className.includes("SLATag")) {
-        console.log("SLATag");
         iconTagStyles = `color: white`;
         className.includes("Pending") ?
-            tagStyles = `color: #187E36; background-color: #D9FAE0; border-radius: 4px; border: 1px solid #187E36; margin: 0` :
-            tagStyles = `color: #CE212D; background-color: #FEEAE8; border-radius: 4px; border: 1px solid #CE212D; margin: 0`;
+            tagStyles = `color: var(--ok-color); background-color: #D9FAE0; border-radius: 4px; border: 1px solid var(--ok-color); margin: 0` :
+            tagStyles = `color: var(--notif-error-color); background-color: #FEEAE8; border-radius: 4px; border: 1px solid var(--notif-error-color); margin: 0`;
     }
     let classNames = `CombinedTag ${className}`;
 
@@ -58,10 +57,10 @@
     }
 
     .Pending {
-        background-color: #187E36;
+        background-color: var(--ok-color);
     }
 
     .Overdue {
-        background-color: #CE212D;
+        background-color: var(--notif-error-color);
     }
 </style>
