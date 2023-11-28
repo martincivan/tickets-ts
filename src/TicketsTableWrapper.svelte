@@ -1,5 +1,5 @@
 <script>
-    import TicketsTable from "./TicketsTable.svelte";
+    import TicketsTable from "./lib/table/TicketsTable.svelte";
 
     import {init, waitLocale} from 'svelte-intl-precompile';
     import {registerAll} from '$locales';
@@ -7,6 +7,7 @@
     registerAll();
 
     export let lang = 'sk';
+    export let font_mapping_path;
 
     init({
         initialLocale: lang,
@@ -22,7 +23,6 @@
     export let selectedAll = false;
 
     function handleSelection(selection, sAll) {
-        console.log("selection", selection)
         selectionMap = selection;
         selectedAll = sAll;
         if (selectionhandler) {
@@ -40,3 +40,5 @@
         </slot>
     </TicketsTable>
 {/if}
+
+<link rel="stylesheet" href={font_mapping_path}>

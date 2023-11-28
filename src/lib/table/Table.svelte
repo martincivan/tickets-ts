@@ -2,11 +2,10 @@
     import {onMount} from 'svelte';
     import THead from "./THead.svelte";
     import TBody from "./TBody.svelte";
-    import LoadMore from "./LoadMore.svelte";
+    import LoadMore from "../common/LoadMore.svelte";
 
     export let data;
     export let columns;
-    export let contextMenu;
     export let loadMore;
     export let middleclickhandler;
     export let selectedAll;
@@ -31,49 +30,35 @@
 </script>
 
 <div class="container" bind:this={container}>
-    <table>
-        <THead {columns} contextMenu={contextMenu} {data} {selectedAll}/>
-        <TBody columns={$columns} {data} {middleclickhandler} {selectedAll}>
-        <td class="load" colspan="{$columns.reduce((p, c ) => p + c.visible, 1)}">
-            <div bind:this={loadRow} class="load" on:click={loadMore}>
-
-                <LoadMore/>
-            </div>
-
-        </td>
-        </TBody>
-    </table>
+    <THead {columns} {data} {selectedAll}/>
+    <TBody columns={$columns} {data} {middleclickhandler}>
+    <div class="load">
+        <div bind:this={loadRow} class="load" on:click={loadMore}>
+            <LoadMore/>
+        </div>
+    </div>
+    </TBody>
 </div>
 
 <style>
     .load {
-        width: 100%;
-    }
-
-    table {
-        max-height: 100%;
-        width: 100%;
-        border-spacing: 4px 5px;
-        border: none;
-        table-layout: fixed;
+        display: block;
     }
 
     .container {
-        width: 100%;
+        width: calc(100% - 16px);
         flex-grow: 1;
         flex-basis: 0;
+        padding: 8px;
         overflow-y: scroll;
         overflow-x: hidden;
+        border-spacing: 4px 5px;
+        border: none;
     }
 
-    @media screen and (max-width: 768px) {
-        table {
-            display: block;
-        }
-
+    @media screen and (min-width: 768px) {
         .load {
-            display: block;
+            width: 100%;
         }
     }
-
-</style>/
+</style>

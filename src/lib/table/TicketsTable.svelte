@@ -1,46 +1,35 @@
 <script>
-    import Table from "./lib/Table.svelte";
+    import Table from "./Table.svelte";
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import {writable} from "svelte/store";
-    import {Column, DateColumnDefinition, SimpleColumnDefinition} from "./lib/columns/columns.js";
-    import {TagsLoader} from "./lib/tags/tags.js";
+    import {Column} from "../columns/columns.js";
+    import {TagsLoader} from "../tags/tags.js";
     import {setContext} from "svelte";
-    import ColumnEditor from "./lib/columns/ColumnEditor.svelte";
     import {
         Configuration,
         GetAgentsGridListSortDirEnum,
         GetTicketsGridListSortFieldEnum,
         GridApi
     } from "@qualityunit/liveagent-api";
-    import Counter from "./lib/Counter.svelte";
+    import Counter from "../common/Counter.svelte";
     import {t} from 'svelte-intl-precompile'
-    import UserColumn from "./lib/columns/UserColumn.svelte";
-    import ComplexColumn from "./lib/columns/ComplexColumn.svelte";
+    import UserColumn from "../columns/UserColumn.svelte";
+    import StatusColumn from "../columns/StatusColumn.svelte";
+    import ImportanceColumn from "../columns/ImportanceColumn.svelte";
     import TiArrowSync from "svelte-icons-pack/ti/TiArrowSync.js";
-    import StatusLabel from "./lib/StatusLabel.svelte";
+    import NoTickets from "./NoTickets.svelte";
 
     let columns;
 
     $: columns = writable([
-        new Column($t("User"), UserColumn, false, true),
-        new Column($t("Ticket"), ComplexColumn, false, true),
-        new DateColumnDefinition($t("Date changed"), GetTicketsGridListSortFieldEnum.Datechanged, true),
-        new DateColumnDefinition("Date created", GetTicketsGridListSortFieldEnum.Datecreated),
-        new DateColumnDefinition("Date resolved", GetTicketsGridListSortFieldEnum.Dateresolved),
-        new DateColumnDefinition("Status changed", GetTicketsGridListSortFieldEnum.Statuschanged),
-        new DateColumnDefinition("Last activity", GetTicketsGridListSortFieldEnum.LastActivity, true),
-        new DateColumnDefinition("Date reopen", GetTicketsGridListSortFieldEnum.Datereopen),
-        new DateColumnDefinition("Date due", GetTicketsGridListSortFieldEnum.Datedue, true),
-        new SimpleColumnDefinition("Ticket ID", "code"),
-        new SimpleColumnDefinition("Source", "channelType"),
-        new Column($t("Status"), StatusLabel, false, false, true),
-
+        new Column($t("User"), UserColumn, false),
+        new Column($t("Status"), StatusColumn, false),
+        new Column($t("Importance"), ImportanceColumn, true)
     ]);
 
     export let apikey;
     export let filters;
     export let middleclickhandler;
-
     export let selectionHandler;
 
     let selection = writable({})
@@ -67,6 +56,7 @@
     setContext("api", api);
 
     const data = writable([])
+    const hasData = writable(false)
     setContext("data", data)
     const sort = writable(GetTicketsGridListSortFieldEnum.Rorder)
     const direction = writable(true)
@@ -107,6 +97,9 @@
                 $data = []
             }
             $data = $data.concat(value.rows)
+            if (value.rows.length > 0) {
+                hasData.set(true)
+            }
             $cursor = value.cursor
             loaded = true
         } catch (e) {
@@ -124,12 +117,6 @@
     setContext("direction", direction)
     setContext("sort", sort)
 
-    let columnEditor;
-
-    let contextMenu = (e) => {
-        columnEditor.openDialog();
-    }
-
     data.subscribe(d => {
         selection.set(d.filter((e) => (e.__selected ?? false)).map((e) => e.conversationid))
     });
@@ -144,9 +131,12 @@
         <button class:loading={$loading} on:click={() => loadMore(true)} title={$t("Reload")}>
             <Icon size="20px" src={TiArrowSync}/>
         </button>
-        <ColumnEditor bind:this={columnEditor} {columns}/>
     </div>
-    <Table {columns} {contextMenu} {data} {loadMore} {middleclickhandler} {selectedAll}/>
+    {#if !$hasData && !$loading}
+        <NoTickets />
+    {:else}
+        <Table {columns} {data} {loadMore} {middleclickhandler} {selectedAll}/>
+    {/if}
 </main>
 
 <style>

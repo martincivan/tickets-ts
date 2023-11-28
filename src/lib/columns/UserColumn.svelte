@@ -1,9 +1,12 @@
 <script>
     import Avatar from "svelte-avatar";
     import md5 from "md5";
-    import {hashCode} from "../hash.js";
+    import {hashCode} from "../common/hash.js";
+    import Column from "./Column.svelte";
+    import IconTag from "../tags/IconTag.svelte";
 
     export let row;
+    export let className = "userColumn";
 
     let name = (row["firstname"] + " " + row["lastname"]);
     if (!name.trim()) {
@@ -24,35 +27,53 @@
     if (r + g + b > 400) {
         r = 0;
     }
-
+    let company = row["company"] === "Y" ? "Company" : "No Company";
 </script>
 
-<div class="container">
+<Column {className}>
     <div class="avatar">
         <Avatar bgColor="rgb({r},{g},{b})" name={name} src={url}></Avatar>
     </div>
     <div class="texts">
         <div class="name">{name}</div>
         <div class="email">{row["emails"]}</div>
+        <IconTag text={company} className={company === "Company" ? "CompanyTag" : "NoCompanyTag"} iconVariable="la-companies" />
     </div>
-</div>
+</Column>
 
 <style>
-    .container {
+    :global(.Column.userColumn) {
         display: flex;
     }
 
+    :global(.Tag.CompanyTag) {
+        background-color: var(--department-bg-color);
+        color: var(--main-textcolor);
+    }
+
+    :global(.Tag.NoCompanyTag) {
+        background-color: white;
+        color: var(--main-lighter-textcolor);
+        border: 1px solid var(--main-lighter-textcolor);
+    }
+
+
     .avatar {
-        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
     }
 
     .name {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: bold;
     }
 
     .email {
-        font-size: 12px;
-        color: #606060;
+        font-size: 13px;
+        line-height: 20px;
     }
 
     .texts {

@@ -1,9 +1,6 @@
 <script>
     import {getContext} from "svelte";
     import {t} from 'svelte-intl-precompile'
-
-    let showImage = false;
-
     let text;
     let loading = getContext("loading")
     let cursor = getContext("cursor")
@@ -11,7 +8,6 @@
     let error = getContext("error")
 
     function getText(loading, cursor, data) {
-        showImage = false;
         if ($error) {
             return $t("Loading failed. Please try again later.")
         }
@@ -20,7 +16,6 @@
         }
         if (cursor == null) {
             if (data.length === 0) {
-                showImage = true;
                 return $t("No results match your filter. Try broadening the search criteria.");
             }
             return "All data loaded";
@@ -32,9 +27,6 @@
 </script>
 
 <div>
-    {#if showImage}
-        <img alt="No results placeholder" src="https://support.qualityunit.com/themes/agent/obsidian/img/no-result.svg">
-    {/if}
     <p>{text}</p>
 </div>
 

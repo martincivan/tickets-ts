@@ -15,6 +15,7 @@ class TagsLoader {
 
     async load() {
         let newTags = await this.api.getTagsGridList();
+        // @ts-ignore
         newTags = newTags.reduce((acc,curr)=> (acc[curr.tagid]=curr,acc),{});
         this.tags.set(newTags);
     }

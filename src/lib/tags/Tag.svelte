@@ -1,22 +1,34 @@
 <script>
-
-import {getContext} from "svelte";
-
-export let tagId;
-let tagsMap = getContext("tagsMap")
-
-$: color = $tagsMap[tagId]?.color ?? 0;
-$: backgroundcolor = $tagsMap[tagId]?.backgroundcolor ?? 0;
-$: name = $tagsMap[tagId]?.name ?? "";
-
+    export let text;
+    export let className = "";
+    export let style = "";
 </script>
 
-<span style="color: #{color}; background: #{backgroundcolor}">{name}</span>
+<div class="Tag {className}" style={style}>
+    <slot/>
+    <span class="text">{text}</span>
+</div>
 
 <style>
-    span {
+    .Tag {
+        display: inline-block;
+        color: var(--department-bg-color);
+        text-align: center;
         font-size: 12px;
-        border-radius: 25px;
-        padding: 3px 10px;
+        font-weight: bold;
+        line-height: 20px;
+        padding: 2px 6px;
+        margin-right: 6px;
+        margin-top: 2px;
+        border-radius: 69px;
+    }
+
+    .Tag:before {
+        font-family: "la-icon-font";
+    }
+
+    .SLA {
+        border: 1px solid #CFD6DD;
+        border-radius: 4px;
     }
 </style>
